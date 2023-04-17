@@ -8,32 +8,52 @@
         <title>Travel.me</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Google icons-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/mystyles.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+
     <body>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">Travel.me</a>
+                <a class="navbar-brand" href="index.php"><span class="material-symbols-outlined">travel_explore</span> Travel.me</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="myarea.php">My Area</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.php">Login/Register</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
         <!-- Header - set the background image for the header in the line below-->
         <header class="py-5 bg-image-full" style="background-image: url('https://cdn.pixabay.com/photo/2017/08/05/12/15/people-2583089_960_720.jpg')">
             <div class="text-center my-5">
                 <!--<img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />-->
-                <h1 class="text-white fs-1 fw-bolder">Travel.me</h1>
+                <h1 class="text-white ft-1 fw-bolder">Travel.me</h1>
                 <p class="text-white-50 mb-2">Follow in our footsteps </p>
             </div>
+
+            <!-- Search bar-->
+            <div class="text-center my-5 justify-content-center text-white">
+                <nav class="navbar">
+                    <div class="container">
+                        <form class="d-flex flex-row" role="search">
+                            <input class="form-control me-2 col-1" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn-primary btn mx-1 " type="submit">Search</button>
+                            <button class="btn-primary btn mx-1" type="submit">Find</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
         </header>
+
         <!-- Content section-->
         <section class="py-5">
             <div class="container my-5">
