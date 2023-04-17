@@ -48,11 +48,15 @@
                             <input class="form-control me-2 col-1" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn-primary btn mx-1 " type="submit">Search</button>
                             <button class="btn-primary btn mx-1" type="submit">Find</button>
+                            <button onclick="decrement()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
+                            <input type="text" id="quantity" name="quantity" class="form-control" value="10" min="1" max="365">
+                            <button onclick="increment()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
+
                         </form>
                     </div>
                 </nav>
             </div>
-        </header>
+        </header> 
 
         <!-- Content section-->
         <section class="py-5">
