@@ -16,4 +16,15 @@
     --bs-btn-disabled-border-color: #000;
 }
 
+.itinerario{
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position-y: 20%;
+    position: relative;
+}
 
+.py-distance {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
