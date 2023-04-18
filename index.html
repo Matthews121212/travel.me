@@ -43,14 +43,13 @@
             <!-- Search bar-->
             <div class="text-center my-2 justify-content-center text-white">
                     <div class="container">
-                        <form class="d-flex flex-row  mx-1" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex mx-1" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required>
+                            <button onclick="decrement()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
+                            <input type="text" placeholder="Days" id="quantity" name="quantity" class="form-control mx-1"  required>
+                            <button onclick="increment()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                             <button class="btn-primary btn mx-1 " type="submit">Search</button>
                             <button class="btn-primary btn mx-1" type="submit">Find</button>
-                            <button onclick="decrement()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
-                            <input type="text" id="quantity" name="quantity" class="form-text mx-1" value="10" min="1" max="365">
-                            <input type="text" placeholder="Days" id="quantity" name="quantity" class="form-control" size="10">
-                            <button onclick="increment()" class="btn-secondary btn mx-1 " type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                         </form>
                     </div>
             </div>
