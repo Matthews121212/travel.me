@@ -16,18 +16,14 @@
     --bs-btn-disabled-border-color: #000;
 }
 
-.itinerario{
+.container-itinerario{
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
     background-repeat: no-repeat; 
     background-size: cover;
     background-position-y: 20%;
     position: relative;
+    min-height: 15rem;
 }
-
-.py-distance {
-    padding-top: 3rem !important;
-    padding-bottom: 3rem !important;
-  }
 
   .form-control {
     display: block;
@@ -48,6 +44,14 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
-.text-destination {
-    
-}
+  .destination-list {
+    min-width: 80%;
+    min-height: 10%;
+  }
+
+  
+.text-over-img {
+  z-index:1;
+  font-size: 1.2em;
+  margin-top: -50px;
+  }
