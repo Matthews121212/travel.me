@@ -1,39 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <?php include_once "assets/head.html" ?>
         <title>Travel.me</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Google icons-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/mystyles.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
     </head>
-
+    
     <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.php"><span class="material-symbols-outlined">travel_explore</span> Travel.me</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myarea.html">My Area</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.php">Login/Register</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('https://cdn.pixabay.com/photo/2017/08/05/12/15/people-2583089_960_720.jpg')">
+        <?php include_once "assets/navbar.html" ?>
+        
+        <header class="py-5 bg-image-full header">
             <div class="text-center my-5">
                 <!--<img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />-->
                 <h1 class="text-white ft-1 fw-bolder">Travel.me</h1>
@@ -53,11 +28,7 @@
                         </form>
                     </div>
             </div>
-        </header> 
-
-
-
-
+        </header>
 
         <!-- Content section-->
         <h2 class="text-center text-primary fw-bold fs-1 py-5">Our best travel destinations</h2>
@@ -139,14 +110,7 @@
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        
+        <?php include_once "assets/footer.html" ?>
     </body>
 </html>
