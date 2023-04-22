@@ -32,7 +32,7 @@
 
         <!-- Content section-->
         <h2 class="text-center text-primary fw-bold fs-1 py-5">Our best travel destinations</h2>
-        <section class="">
+        <section class=" pb-5">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="container-fluid container-itinerario " style="background-image: url('https://www.visitbritain.com/sites/default/files/consumer/paragraphs-bundles/image-banner/vb34141642-london-bond-ri_0.jpg');">  
@@ -166,21 +166,11 @@
                     </div>
                 </li>
             </ul>
-        </section>
         
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Engaging Background Images</h2>
-                        <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
-                        <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
-                    </div>
-                </div>
-            </div>
+
+        <div id="ww_f03b78024e4c" v='1.3' loc='id' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":["wl4529"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#000000","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#FFFFFF17"}'>Weather Data Source: <a href="https://oneweather.org/paris/" id="ww_f03b78024e4c_u" target="_blank">Weather Paris tomorrow hourly</a></div><script async src="https://app1.weatherwidget.org/js/?id=ww_f03b78024e4c"></script>
         </section>
-        
         <?php include_once "assets/footer.html" ?>
-    </body>
+    
+      </body>
 </html>
