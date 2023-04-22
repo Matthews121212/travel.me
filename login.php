@@ -6,8 +6,6 @@
 </head>
 <body>
     <?php include_once "assets/navbar.html" ?>
-
-   
     <div class="container">
         <div class="row align-items-center ">
             <h2 class="text-center text-primary fw-bold fs-1 py-3">Log in</h2>
@@ -16,11 +14,31 @@
                 class="img-fluid" alt="travel image">
             </div>
             <div class="col">
-                <form>
-                    <input type="email" id="email" class="form-control form-control-lg" placeholder="Enter Email"><br>
-                    <input type="password" id="pass" class="form-control form-control-lg" placeholder="Enter Password"><br>
+                <form action="login.php">
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
                     <button type="submit" class="btn btn-lg btn-primary">Sign in</button><br>
                 </form>
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $dbconn = new mysqli("localhost", "root", "", "bob", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        $email = $_POST["email"];
+                        $password = $_POST["password"];
+                        $stmt = $dbconn->prepare("SELECT password FROM test WHERE email = ?");
+                        $stmt->bind_param("s", $email);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        if ($result) {
+                            $correctPassword = $result->fetch_field();
+                            $passwordMatches = password_verify($password, $correctPassword);
+                            if ($passwordMatches) {
+                                header("Location: myarea.php");
+                            }
+                        }
+                        echo "Incorrect email or password";
+                        return;
+                    }
+                ?>
             </div>
         </div>
     </div>

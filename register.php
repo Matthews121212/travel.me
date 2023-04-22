@@ -15,9 +15,9 @@
             </div>
             <div class="col">
                 <form>
-                    <input type="text" id="nome" class="form-control form-control-lg" placeholder="Enter name and surname"><br>
-                    <input type="email" id="email" class="form-control form-control-lg" placeholder="Enter Email"><br>
-                    <input type="password" id="pass" class="form-control form-control-lg" placeholder="Enter Password"><br>
+                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name and surname" required><br>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
                     <button type="submit" class="btn btn-lg btn-primary">Register</button><br>
                 </form>
             </div>
