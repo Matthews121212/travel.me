@@ -14,7 +14,7 @@
                 class="img-fluid" alt="travel image">
             </div>
             <div class="col">
-                <form>
+                <form action="register.php" method="POST">
                     <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name and surname" required><br>
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
@@ -27,6 +27,35 @@
                         </div>
                     </div>
                 </form>
+
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $dbconn = new mysqli("localhost", "root", "", "bob", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        $name = $_POST["name"];
+                        $email = $_POST["email"];
+                        $password = $_POST["password"];
+                        $stmt = $dbconn->prepare("SELECT 1 FROM test WHERE email = ?");
+                        $stmt->bind_param("s", $email);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $alreadyRegistered = $result->num_rows > 0;
+                        $result->close();
+                        $stmt->close();
+                        if(!$alreadyRegistered) {
+                            $stmt = $dbconn->prepare("INSERT INTO test (nome, email, `password`) VALUES (?, ?, ?)");
+                            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                            $stmt->bind_param("sss", $name, $email, $passwordHash);
+                            $stmt->execute();
+                            $stmt->close();
+                            // TODO: Set authentication cookies
+                            header("Location: myarea.php");
+                        }
+                        else {
+                            echo "The email is already registered";
+                        }
+                        $dbconn->close();
+                    }
+                ?>
             </div>
         </div>
     </div>

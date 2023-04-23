@@ -17,7 +17,7 @@
             </div>
             <div class="col">
                 
-                <form action="login.php">
+                <form action="login.php" method="POST">
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
                     <div class="row">
@@ -39,15 +39,16 @@
                         $stmt->bind_param("s", $email);
                         $stmt->execute();
                         $result = $stmt->get_result();
-                        if ($result) {
-                            $correctPassword = $result->fetch_field();
+                        $correctPassword = $result->fetch_column();
+                        if($correctPassword) {
                             $passwordMatches = password_verify($password, $correctPassword);
                             if ($passwordMatches) {
+                                // TODO: Set authentication cookies
                                 header("Location: myarea.php");
                             }
                         }
                         echo "Incorrect email or password";
-                        return;
+                        $dbconn->close();
                     }
                 ?>
             </div>
