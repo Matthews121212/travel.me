@@ -32,7 +32,7 @@
                 
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $dbconn = new mysqli("localhost", "root", "", "bob", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        $dbconn = new mysqli("localhost", "root", "", "travelme", 3306) or die("Could not connect: " . mysqli_connect_error());
                         $email = $_POST["email"];
                         $password = $_POST["password"];
                         $stmt = $dbconn->prepare("SELECT password FROM test WHERE email = ?");
