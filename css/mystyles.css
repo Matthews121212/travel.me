@@ -68,3 +68,15 @@
 .img-widget{
   size: 20rem;
 }
+
+
+
+.map-wrap {         
+  border: 3px solid #000;         
+  width: 400px;         
+  height: 400px;   
+}   
+#map {         
+  width: 400px;         
+  height: 400px;   
+}

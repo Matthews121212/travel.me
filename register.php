@@ -15,9 +15,47 @@
             </div>
             <div class="col">
                 <form action="register.php" method="POST">
-                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name and surname" required><br>
+                    <div class="row">
+                        <div class="col"> 
+                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name" required><br>
+                        </div>
+                        <div class="col"> 
+                            <input type="text" name="surname" class="form-control form-control-lg" placeholder="Enter surname" required><br>
+                        </div>
+                    </div>
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
+                    
+                    <h6 class="form-check form-check-inline form-control-lg">Gender: </h6>
+
+                    <div class="form-check form-check-inline form-control-lg">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                      value="option1" checked />
+                    <label class="form-check-label" for="femaleGender">Female</label>
+                    </div>
+
+                    <div class="form-check form-check-inline form-control-lg">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                        value="option2" />
+                        <label class="form-check-label" for="maleGender">Male</label>
+                    </div>
+
+                    <div class="form-check form-check-inline form-control-lg">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                        value="option3" />
+                        <label class="form-check-label" for="otherGender">Other</label>
+                    </div>
+
+                    <input type="tel" name="number" class="form-control form-control-lg" placeholder="Enter phone number" required><br>
+
+                    <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                    <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
+                    <label class="form-check-label text-secondary" for="form2Example3">
+                    I do accept the <a href="#!" class="text-primary"><u>Terms and Conditions</u></a> of your
+                    site.
+                    </label>
+                    </div>
+
                     <div class="row">
                         <div class="col-auto">
                         <button type="submit" class="btn btn-lg btn-primary">Register</button><br>
