@@ -7,7 +7,11 @@
                 <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="myarea.php">My Area</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.php">Login/Register</a></li>
+                <?php if(true /* TODO: Check if user is not authenticated */): ?>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login/Register</a></li>
+                <?php else: ?>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

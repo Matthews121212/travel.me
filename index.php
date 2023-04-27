@@ -6,7 +6,7 @@
     </head>
     
     <body>
-        <?php include_once "assets/navbar.html" ?>
+        <?php include_once "assets/navbar.php" ?>
         
         <header class="py-5 bg-image-full header">
             <div class="text-center my-5">
