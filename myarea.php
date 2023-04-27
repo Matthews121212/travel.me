@@ -30,10 +30,12 @@
                         <div class="row">
                             <div class="col">
                                 <div class="panel panel-dark panel-colorful">
-                                    <div class="panel-body text-center">
-                                        <p class="text-uppercase mar-btm text-sm">New Travel</p>
-                                        <i class="bi bi-airplane-fill display-1"></i>
-                                    </div>
+                                    <a class="link" href="newtravel.php">
+                                        <div class="panel-body text-center">
+                                            <p class="text-uppercase mar-btm text-sm">New Travel</p>
+                                            <i class="bi bi-airplane-fill display-1"></i>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col">
