@@ -1,3 +1,8 @@
+<?php
+    if(false /* TODO: Check if user is authenticated */) {
+        header("Location: myarea.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +12,7 @@
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <?php include_once "assets/navbar.html" ?>
+    <?php include_once "assets/navbar.php" ?>
     <div class="container">
         <div class="row align-items-center ">
             <h2 class="text-center text-primary fw-bold fs-1 py-3">Log in page</h2>
@@ -32,7 +37,7 @@
                 
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $dbconn = new mysqli("localhost", "root", "", "travelme", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
                         $email = $_POST["email"];
                         $password = $_POST["password"];
                         $stmt = $dbconn->prepare("SELECT password FROM test WHERE email = ?");

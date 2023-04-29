@@ -1,3 +1,8 @@
+<?php
+    if(false /* TODO: Check if user is authenticated */) {
+        header("Location: myarea.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +10,7 @@
     <title>Travel.me - Register</title>
 </head>
 <body>
-    <?php include_once "assets/navbar.html" ?>
+    <?php include_once "assets/navbar.php" ?>
     <div class="container ">
         <div class="row align-items-center ">
             <h2 class="text-center text-primary fw-bold fs-1 py-3">Create new account</h2>
@@ -68,7 +73,10 @@
 
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $dbconn = new mysqli("localhost", "root", "", "bob", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        if(false) {// TODO: Check if the user is authenticated
+                            header("Location: myarea.php");
+                        }
+                        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
                         $name = $_POST["name"];
                         $email = $_POST["email"];
                         $password = $_POST["password"];
