@@ -20,3 +20,7 @@ var foro = L.marker([41.8903461,12.4895719]).addTo(map)
 
 // per cancellarlo basta fare foro.remove()
 
+$( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
