@@ -37,14 +37,15 @@
                 
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
+                        $dbconn = new mysqli("localhost", "root", "", "travelme", 3306) or die("Could not connect: " . mysqli_connect_error());
                         $email = $_POST["email"];
                         $password = $_POST["password"];
-                        $stmt = $dbconn->prepare("SELECT password FROM test WHERE email = ?");
+                        $stmt = $dbconn->prepare("SELECT password FROM user WHERE email = ?");
                         $stmt->bind_param("s", $email);
                         $stmt->execute();
                         $result = $stmt->get_result();
                         $correctPassword = $result->fetch_column();
+                        var_dump($correctPassword);
                         if($correctPassword) {
                             $passwordMatches = password_verify($password, $correctPassword);
                             if ($passwordMatches) {
@@ -52,7 +53,9 @@
                                 header("Location: myarea.php");
                             }
                         }
-                        echo "Incorrect email or password";
+                        else {
+                            echo "Incorrect email or password";
+                        }
                         $dbconn->close();
                     }
                 ?>
