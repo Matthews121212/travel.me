@@ -2,6 +2,34 @@
     if(false /* TODO: Check if user is authenticated */) {
         header("Location: myarea.php");
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $dbconn = new mysqli("localhost", "root", "", "travelme", 3306) or die("Could not connect: " . mysqli_connect_error());
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $date = $_POST["date"];
+        $gender = $_POST["gender"];
+        $number = $_POST["number"];
+        
+        $stmt = $dbconn->prepare("SELECT 1 FROM user WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $alreadyRegistered = $result->num_rows > 0;
+        $result->close();
+        $stmt->close();
+        if(!$alreadyRegistered) {
+            $stmt = $dbconn->prepare("INSERT INTO user (name, surname, email, password, date, gender, number) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHash, $date, $gender, $number);
+            $stmt->execute();
+            $stmt->close();
+            // TODO: Set authentication cookies
+            header("Location: myarea.php");
+        }
+        $dbconn->close();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +40,7 @@
 <body>
     <?php include_once "assets/navbar.php" ?>
     <div class="container ">
-        <div class="row align-items-center ">
+        <div class="row align-items-center">
             <h2 class="text-center text-primary fw-bold fs-1 py-3">Create new account</h2>
             <div class="col ">
                 <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/5571540-itinerario-di-viaggio-in-aereo-perno-sulla-mappa-del-mondo-idea-di-viaggio-di-viaggio-vettoriale.jpg"
@@ -34,21 +62,23 @@
                     <h6 class="form-check form-check-inline form-control-lg">Gender: </h6>
 
                     <div class="form-check form-check-inline form-control-lg">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                      value="option1" checked />
-                    <label class="form-check-label" for="femaleGender">Female</label>
+                        <input class="form-check-input" type="radio" name="gender" value="female" required>
+                        <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
 
                     <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                        value="option2" />
+                        <input class="form-check-input" type="radio" name="gender" value="male" required>
                         <label class="form-check-label" for="maleGender">Male</label>
                     </div>
 
                     <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                        value="option3" />
+                        <input class="form-check-input" type="radio" name="gender" value="other" required>
                         <label class="form-check-label" for="otherGender">Other</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h6 class="form-check form-check-inline form-control-lg active" for="date">Birthday date: </h6>
+                        <input type="date" id="date" name="date">
                     </div>
 
                     <input type="tel" name="number" class="form-control form-control-lg" placeholder="Enter phone number" required><br>
@@ -70,36 +100,9 @@
                         </div>
                     </div>
                 </form>
-
                 <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        if(false) {// TODO: Check if the user is authenticated
-                            header("Location: myarea.php");
-                        }
-                        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
-                        $name = $_POST["name"];
-                        $email = $_POST["email"];
-                        $password = $_POST["password"];
-                        $stmt = $dbconn->prepare("SELECT 1 FROM test WHERE email = ?");
-                        $stmt->bind_param("s", $email);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        $alreadyRegistered = $result->num_rows > 0;
-                        $result->close();
-                        $stmt->close();
-                        if(!$alreadyRegistered) {
-                            $stmt = $dbconn->prepare("INSERT INTO test (nome, email, `password`) VALUES (?, ?, ?)");
-                            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                            $stmt->bind_param("sss", $name, $email, $passwordHash);
-                            $stmt->execute();
-                            $stmt->close();
-                            // TODO: Set authentication cookies
-                            header("Location: myarea.php");
-                        }
-                        else {
-                            echo "The email is already registered";
-                        }
-                        $dbconn->close();
+                    if ($_SERVER["REQUEST_METHOD"] == "POST" && $alreadyRegistered) {
+                        echo "The email is already registered";
                     }
                 ?>
             </div>
