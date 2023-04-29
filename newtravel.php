@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <?php include_once "assets/navbar.html" ?>
+    <?php include_once "assets/navbar.php" ?>
 
     <!-- Content section-->
     <section class="">
