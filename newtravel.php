@@ -17,8 +17,8 @@
                 <div class="row">
                     <form class="mx-1" role="search">
                         <label class="">Add or remove Days</label>
-                        <button onclick="addItineraryDays(-1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
-                        <button onclick="addItineraryDays(1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
+                        <button onclick="addItineraryDays(-1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
+                        <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                     </form>
                 </div>
                 <div class="row py-3 add-day-1">
@@ -42,8 +42,6 @@
                     </ul>
 
                 </div>
-
-
 
             </div>
             <div class="col-sm-4 text-left">
