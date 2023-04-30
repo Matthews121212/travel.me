@@ -17,40 +17,29 @@
                 <div class="row">
                     <form class="mx-1" role="search">
                         <label class="">Add or remove Days</label>
-                        <button onclick="addItineraryDays(-1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
-                        <button onclick="addItineraryDays(1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
+                        <button onclick="addItineraryDays(-1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
+                        <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                     </form>
                 </div>
-                <div class="row py-3">
-                    <label class="ft-2 fw-bolder py-3">Day 1</label>
-                    <div class="container">
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
-                            <li class="list-group-item">Item 4</li>
-                            <li class="list-group-item">Item 5</li>
-                            <li class="list-group-item">Item 6</li>
-                            <li class="list-group-item">Item 7</li>
-                            <li class="list-group-item">Item 8</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row py-3">
+                <div class="container itinerary-days">
+                    <ul class="list-group place-list">
+                        <li class="list-group-item d-flex-row itinerary-days">
+                            <div class="container d-flex py-4">
+                                <p class="p-0 m-0 flex-grow-1">Day 1</p> <button class="btn btn-secondary" onclick=addItineraryDays()> <i class="bi bi-arrow-bar-up"></i> </button> <button class="btn btn-secondary" onclick=moveDown()> <i class="bi bi-arrow-bar-down"></i> </button> <button class="btn btn-secondary" onclick=addItineraryDays()> <i class="bi bi-x-lg"></i> </button>
+                            </div>
+                            <div class="container list-Place">
+                                <ul class="list-group list-group-numbered place-list">
+                                    <li class="list-group-item d-flex">
+                                        <p class="p-0 m-0 flex-grow-1">First item</p> <button class="btn btn-secondary" onclick=moveUp()> <i class="bi bi-arrow-bar-up"></i> </button> <button class="btn btn-secondary" onclick=moveDown()> <i class="bi bi-arrow-bar-down"></i> </button> <button class="btn btn-secondary" onclick=removePlace()> <i class="bi bi-x-lg"></i> </button>
+                                    </li>
+                                    <li class="list-group-item d-flex">
+                                        <p class="p-0 m-0 flex-grow-1">First item</p> <button class="btn btn-secondary" onclick=moveUp()> <i class="bi bi-arrow-bar-up"></i> </button> <button class="btn btn-secondary" onclick=moveDown()> <i class="bi bi-arrow-bar-down"></i> </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
-                    <label class="ft-2 fw-bolder py-3">Day 2</label>
-                    <div class="container">
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
-                            <li class="list-group-item">Item 4</li>
-                            <li class="list-group-item">Item 5</li>
-                            <li class="list-group-item">Item 6</li>
-                            <li class="list-group-item">Item 7</li>
-                            <li class="list-group-item">Item 8</li>
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
             <div class="col-sm-4 text-center ">
@@ -66,8 +55,6 @@
                     </ul>
 
                 </div>
-
-
 
             </div>
             <div class="col-sm-4 text-left">
