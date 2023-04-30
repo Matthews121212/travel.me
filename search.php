@@ -5,7 +5,7 @@
         <title>Travel.me</title>
     </head>
     
-    <body>
+    <body onload="createMap()">
         <?php include_once "assets/navbar.php" ?>
 
         <div id="map"></div>

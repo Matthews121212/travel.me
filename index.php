@@ -21,7 +21,7 @@
                         <form class="d-inline-flex mx-1" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required>
                             <button onclick="addDays(-1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
-                            <input type="text" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="1" placeholder="Days" id="quantity" name="quantity" class="form-control mx-1"  required>
+                            <input type="text" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="1" placeholder="Days" id="quantity" name="quantity" class="form-control mx-1"  disabled required>
                             <button onclick="addDays(1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                             <button class="btn-primary btn mx-1 " type="submit">Search</button>
                             <button class="btn-primary btn mx-1" type="submit">Find</button>

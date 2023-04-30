@@ -6,7 +6,7 @@
     <title>Travel.me - MyArea</title>
 </head>
 
-<body>
+<body onload="createMap()">
     <?php include_once "assets/navbar.php" ?>
 
     <!-- Content section-->
@@ -21,34 +21,10 @@
                         <button onclick="addItineraryDays(1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                     </form>
                 </div>
-                <div class="row py-3">
+                <div class="row py-3 add-day-1">
                     <label class="ft-2 fw-bolder py-3">Day 1</label>
                     <div class="container">
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
-                            <li class="list-group-item">Item 4</li>
-                            <li class="list-group-item">Item 5</li>
-                            <li class="list-group-item">Item 6</li>
-                            <li class="list-group-item">Item 7</li>
-                            <li class="list-group-item">Item 8</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row py-3">
-
-                    <label class="ft-2 fw-bolder py-3">Day 2</label>
-                    <div class="container">
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item">Item 1</li>
-                            <li class="list-group-item">Item 2</li>
-                            <li class="list-group-item">Item 3</li>
-                            <li class="list-group-item">Item 4</li>
-                            <li class="list-group-item">Item 5</li>
-                            <li class="list-group-item">Item 6</li>
-                            <li class="list-group-item">Item 7</li>
-                            <li class="list-group-item">Item 8</li>
+                        <ul class="list-group list-group-numbered item-day-1">
                         </ul>
                     </div>
                 </div>
@@ -57,8 +33,8 @@
                 <label class="display-5 fw-bolder py-5">Search a new place</label>
                 <div class="container py-3">
                     <div class="input-group">
-                        <input type="search" onchange=findPlace() class="form-control rounded" placeholder="Search a new place" aria-label="Search" aria-describedby="search-addon" id="search-place" />
-                        <button type="button" onclick=findPlace() class="btn btn-outline-primary">search</button>
+                        <input type="search" onchange="findPlace()" class="form-control rounded" placeholder="Search a new place" aria-label="Search" aria-describedby="search-addon" id="search-place" />
+                        <button type="button" onclick="findPlace()" class="btn-primary btn mx-1">search</button>
                     </div>
                 </div>
                 <div class="container">
