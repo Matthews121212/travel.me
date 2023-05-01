@@ -21,12 +21,7 @@
                         <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
                     </form>
                 </div>
-                <div class="row py-3 add-day-1">
-                    <label class="ft-2 fw-bolder py-3">Day 1</label>
-                    <div class="container">
-                        <ul class="list-group list-group-numbered item-day-1">
-                        </ul>
-                    </div>
+                <div class="add-day">
                 </div>
             </div>
             <div class="col-sm-4 text-center ">

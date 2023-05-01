@@ -1,8 +1,7 @@
 //Global variables
-var itineraryDays = 1;
+var itineraryDays = 0;
 var itinerary = [];
-var day1 = [];
-itinerary.push(day1);
+var map;
 
 function addDays(days) {
     let inputField = $("#quantity");
@@ -13,18 +12,14 @@ function addDays(days) {
 
 
 function createMap(){
-    var map = L.map('map').setView([41.8902338,12.4907832], 13);
+    map = L.map('map').setView([41.8902338,12.4907832], 13);
     // Map layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var foro = L.marker([41.8903461,12.4895719]).addTo(map)
-        .bindPopup('Foro Romano')
-        .openPopup();
-
-    // per cancellarlo basta fare foro.remove()
+    // per cancellarlo basta fare markername.remove()
 }
 
 
@@ -50,10 +45,10 @@ function addItineraryDays(days) {
     if(days==1){
         var day = [];
         itineraryDays++;
-        $(".add-day-1").append('<div class="row py-3 add-day-'+itineraryDays+'"><label class="ft-2 fw-bolder py-3">Day '+itineraryDays+'</label><div class="container"><ul class="list-group list-group-numbered item-day-'+itineraryDays+'"></ul></div></div>');
+        $(".add-day").append('<div class="row py-3 add-day-'+itineraryDays+'"><label class="ft-2 fw-bolder py-3">Day '+itineraryDays+'</label><div class="container"><ul class="list-group list-group-numbered item-day-'+itineraryDays+'"></ul></div></div>');
         itinerary.push(day); 
     }
-    else if(days==-1 && itineraryDays>1){
+    else if(days==-1 && itineraryDays>0){
         $(".add-day-"+itineraryDays+"").remove();
         itinerary.pop();
         itineraryDays--;
@@ -62,15 +57,29 @@ function addItineraryDays(days) {
 
 function addPlaceToDay(parameter){
     var place = parameter.split('&');
-    console.log(place[0]);
     var inputNumber = parseInt(document.getElementById("numberDays").value);
     if(inputNumber>itineraryDays){
         alert(`Select Days error! Your itinerary is only ${itineraryDays} days long!`);
         return false;
     }
     else{
-        $(".item-day-"+inputNumber+"").append('<li class="list-group-item">'+place[0]+'</li>');
-        console.log(itinerary[inputNumber-1]);
+        $(".item-day-"+inputNumber+"").append('<li class="list-group-item"><div class="row"><div class="col">'+place[0]+'</div><div class="col"><button type="button" id="remove-button" onclick="removePlaceToDay(\''+parameter+'\')" class="btn-primary btn">Remove</button></div></div></li>');
         itinerary[inputNumber-1].push(parameter);
+        //Ad marker to map
+        var coord = place[1].split(',');
+        var placeMarker = L.marker([coord[0],coord[1]]).addTo(map)
+        .bindPopup(place[0]+'')
+        .openPopup();
     }
+}
+
+function removePlaceToDay(parameter){
+    var index = -1;
+    for(var i=0;i<itinerary.length && index==-1;i++){
+        index = itinerary[i].indexOf(parameter);
+        if(index!=-1){
+            itinerary[i].splice(index,1);
+        }
+    }
+
 }

@@ -61,15 +61,7 @@
                 ?>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="col">
-        
-        
-    </div>
-    <hr>
-
-    
+    </div>  
     <?php include_once "assets/footer.html" ?>
 </body>
 </html>
