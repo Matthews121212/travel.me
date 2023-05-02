@@ -45,7 +45,7 @@ function addItineraryDays(days) {
     if(days==1){
         var day = [];
         itineraryDays++;
-        $(".add-day").append('<div class="row py-3 add-day-'+itineraryDays+'"><label class="ft-2 fw-bolder py-3">Day '+itineraryDays+'</label><div class="container"><ul class="list-group list-group-numbered item-day-'+itineraryDays+'"></ul></div></div>');
+        $(".add-day").append('<div class="row py-3 add-day-'+itineraryDays+'"><label class="ft-2 fw-bolder py-3">Day '+itineraryDays+'</label><div class="container"><ul class="list-group item-day-'+itineraryDays+'"></ul></div></div>');
         itinerary.push(day); 
     }
     else if(days==-1 && itineraryDays>0){
@@ -63,7 +63,8 @@ function addPlaceToDay(parameter){
         return false;
     }
     else{
-        $(".item-day-"+inputNumber+"").append('<li class="list-group-item"><div class="row"><div class="col">'+place[0]+'</div><div class="col"><button type="button" id="remove-button" onclick="removePlaceToDay(\''+parameter+'\')" class="btn-primary btn">Remove</button></div></div></li>');
+        $(".item-day-"+inputNumber+"").append('<li class="list-group-item list-group-numbered"><div class="row justify-content-center"><div class="row justify-content-center">'+place[0]+'</div><div class="d-flex align-items-center btn-group "><button type="button" id="remove-button" onclick="removePlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button></div></div></li>');
+        
         itinerary[inputNumber-1].push(parameter);
         //Ad marker to map
         var coord = place[1].split(',');
@@ -71,6 +72,21 @@ function addPlaceToDay(parameter){
         .bindPopup(place[0]+'')
         .openPopup();
     }
+}
+
+function moveDownPlaceToDay(){
+    var place = parameter.split('&');
+    var inputNumber = parseInt(document.getElementById("numberDays").value);
+    itinerary[inputNumber-1].forEach(element => {
+        
+    });
+    
+}
+
+function moveUpPlaceToDay(){
+    var place = parameter.split('&');
+    var inputNumber = parseInt(document.getElementById("numberDays").value);
+
 }
 
 function removePlaceToDay(parameter){
