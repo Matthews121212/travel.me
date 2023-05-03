@@ -1,3 +1,8 @@
+<?php
+    if(false /* TODO: Check if user is not authenticated */) {
+        header("Location: login.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

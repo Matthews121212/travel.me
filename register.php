@@ -3,7 +3,7 @@
         header("Location: myarea.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $dbconn = new mysqli("localhost", "root", "", "travelme", 3306) or die("Could not connect: " . mysqli_connect_error());
+        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $email = $_POST["email"];
