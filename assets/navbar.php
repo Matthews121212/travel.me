@@ -1,5 +1,5 @@
 <?php
-    $authenticated = true /* TODO: Check if user is not authenticated */;
+    $authenticated = isset($_SESSION["email"]);
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">

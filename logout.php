@@ -1,5 +1,6 @@
 <?php
-if (true /* TODO: check if user is authenticated */) {
-    // TODO: Unset session cookies
+session_start();
+if (isset($_SESSION["email"])) {
+    session_destroy();
     header('Location: index.php');
 }

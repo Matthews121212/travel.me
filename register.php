@@ -1,5 +1,6 @@
 <?php
-    if(false /* TODO: Check if user is authenticated */) {
+    session_start();
+    if(isset($_SESSION["email"])) {
         header("Location: myarea.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,7 +26,7 @@
             $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHash, $date, $gender, $number);
             $stmt->execute();
             $stmt->close();
-            // TODO: Set authentication cookies
+            $_SESSION["email"] = $email;
             header("Location: myarea.php");
         }
         $dbconn->close();

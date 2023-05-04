@@ -1,5 +1,6 @@
 <?php
-    if(false /* TODO: Check if user is not authenticated */) {
+    session_start();
+    if(!isset($_SESSION["email"])) {
         header("Location: login.php");
     }
 ?>

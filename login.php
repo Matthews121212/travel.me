@@ -1,5 +1,6 @@
 <?php
-    if(false /* TODO: Check if user is authenticated */) {
+    session_start();
+    if(isset($_SESSION["email"])) {
         header("Location: myarea.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +15,7 @@
         $passwordMatches = $correctPasswordHash && password_verify($password, $correctPasswordHash);
         $dbconn->close();
         if ($passwordMatches) {
-            // TODO: Set authentication cookies
+            $_SESSION["email"] = $email;
             header("Location: myarea.php");
         }
     }
