@@ -63,9 +63,11 @@ function addPlaceToDay(parameter){
         return false;
     }
     else{
-        $(".item-day-"+inputNumber+"").append('<li class="list-group-item list-group-numbered"><div class="row justify-content-center"><div class="row justify-content-center">'+place[0]+'</div><div class="d-flex align-items-center btn-group "><button type="button" id="remove-button" onclick="removePlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\''+parameter+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button></div></div></li>');
-        
         itinerary[inputNumber-1].push(parameter);
+        var position = itinerary[inputNumber-1].length;
+        $(".item-day-"+inputNumber+"").append('<li class="list-group-item list-group-numbered element-'+inputNumber+'-'+position+'"><div class="row justify-content-center"><div class="row justify-content-center">'+place[0]+'</div><div class="d-flex align-items-center btn-group "><button type="button" id="remove-button" onclick="removePlaceToDay(\''+parameter+'\',\''+inputNumber+'\',\''+position+'\')"  class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\''+parameter+'\',\''+inputNumber+'\',\''+position+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\''+parameter+'\',\''+inputNumber+'\',\''+position+'\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button></div></div></li>');
+        
+        
         //Ad marker to map
         var coord = place[1].split(',');
         var placeMarker = L.marker([coord[0],coord[1]]).addTo(map)
@@ -74,28 +76,28 @@ function addPlaceToDay(parameter){
     }
 }
 
-function moveDownPlaceToDay(){
-    var place = parameter.split('&');
-    var inputNumber = parseInt(document.getElementById("numberDays").value);
-    itinerary[inputNumber-1].forEach(element => {
-        
-    });
+function moveDownPlaceToDay(parameter,inputNumber,position){
+    var nDay = inputNumber-1;
+    var nElem = position-1;
+    
     
 }
 
-function moveUpPlaceToDay(){
-    var place = parameter.split('&');
-    var inputNumber = parseInt(document.getElementById("numberDays").value);
+function moveUpPlaceToDay(parameter,inputNumber,position){
+    var nDay = inputNumber-1;
+    var nElem = position-1;
+    
 
 }
 
-function removePlaceToDay(parameter){
+function removePlaceToDay(parameter,inputNumber,position){
+    var nDay = inputNumber-1;
+    var nElem = position-1;
+    $(".element-"+inputNumber+"-"+position+"").remove();
     var index = -1;
-    for(var i=0;i<itinerary.length && index==-1;i++){
-        index = itinerary[i].indexOf(parameter);
-        if(index!=-1){
-            itinerary[i].splice(index,1);
-        }
+    index = itinerary[nDay].indexOf(parameter);
+    if(index!=-1){
+        itinerary[nDay].splice(index,1);
     }
-
 }
+

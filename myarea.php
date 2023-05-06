@@ -19,7 +19,11 @@
                 <!--<img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />-->
                 <h1 class="text-white ft-1 fw-bolder">My Area</h1>
                 <img class="img-fluid img-user-logo rounded-circle mb-4 " src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg">
-                <p class="text-white-50 mb-2">Username</p>
+                <p class="text-white mb-2">
+                    <?php 
+                    echo "User: " . $_SESSION['email'];
+                    ?>
+                </p>
             </div>
         </header> 
 
