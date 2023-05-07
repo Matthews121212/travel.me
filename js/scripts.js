@@ -34,7 +34,7 @@ function findPlace(){
         $(".list-result").append('<li class="list-group-item list-search-element"><div class="row"><div class="col fw-bolder">Select Day: </div><div class="col"><input min="1" max="365" value="1" type="number" id="numberDays" class="form-control" onKeyDown="return false" style="width: 5em"></div></div></li>');
         $.each( data, function(key, val) {
             var parameter = val["display_name"].replace(/'/g, "")+'&'+val["lat"] +','+val["lon"]+'';
-            $(".list-result").append('<li class="list-group-item list-search-element" ><div class="row"><div class="col">' + val["display_name"] + '</div><div class="col"><button type="button" id="add-button" onclick="addPlaceToDay(\''+parameter+'\')" class="btn-primary btn">Add</button></div></div></li>');
+            $(".list-result").append('<li class="list-group-item list-search-element" ><div class="row"><div class="col">' + val["display_name"].replace(/'/g, "") + '</div><div class="col"><button type="button" id="add-button" onclick="addPlaceToDay(\''+parameter+'\')" class="btn-primary btn">Add</button></div></div></li>');
           });
     })
 }
@@ -46,7 +46,7 @@ function addItineraryDays(days) {
         var day = [];
         itineraryDays++;
         $(".add-day").append('<div class="row py-3 add-day-'+itineraryDays+'"><label class="ft-2 fw-bolder py-3">Day '+itineraryDays+'</label><div class="container"><ul class="list-group item-day-'+itineraryDays+'"></ul></div></div>');
-        itinerary.push(day); 
+        itinerary.push(day);
     }
     else if(days==-1 && itineraryDays>0){
         $(".add-day-"+itineraryDays+"").remove();
@@ -77,27 +77,54 @@ function addPlaceToDay(parameter){
 }
 
 function moveDownPlaceToDay(parameter,inputNumber,position){
+    var indexMoveElem = $(".element-"+inputNumber+"-"+position+"").index();
     var nDay = inputNumber-1;
-    var nElem = position-1;
+    var max = itinerary[nDay].length - 1;
+    if(indexMoveElem<max){
+        
+        var indexDownElem = indexMoveElem + 1;
+        
+        var listElem = $('ul.item-day-' +inputNumber+ ' li');
+        
+
+        var moveElem = listElem.eq(indexMoveElem);
+        var downElem = listElem.eq(indexDownElem); 
+        
+        // Scambia gli elementi
+        moveElem.insertAfter(downElem);
     
-    
+        //Aggiorno array
+        var temp =  itinerary[nDay][indexDownElem];
+        itinerary[nDay][indexDownElem] = itinerary[nDay][indexMoveElem];
+        itinerary[nDay][indexMoveElem] = temp;
+    }
 }
 
 function moveUpPlaceToDay(parameter,inputNumber,position){
-    var nDay = inputNumber-1;
-    var nElem = position-1;
-    
+    var indexMoveElem = $(".element-"+inputNumber+"-"+position+"").index();
+    if(indexMoveElem>0){
+        var nDay = inputNumber-1;
+        var indexUpElem = indexMoveElem - 1;
+        
+        var listElem = $('ul.item-day-' +inputNumber+ ' li');
+        
 
+        var moveElem = listElem.eq(indexMoveElem);
+        var upElem = listElem.eq(indexUpElem); 
+        
+        // Scambia gli elementi
+        moveElem.insertBefore(upElem);
+    
+        //Aggiorno array
+        var temp =  itinerary[nDay][indexUpElem];
+        itinerary[nDay][indexUpElem] = itinerary[nDay][indexMoveElem];
+        itinerary[nDay][indexMoveElem] = temp;
+    }
 }
 
 function removePlaceToDay(parameter,inputNumber,position){
     var nDay = inputNumber-1;
-    var nElem = position-1;
+    var index = $(".element-"+inputNumber+"-"+position+"").index();
     $(".element-"+inputNumber+"-"+position+"").remove();
-    var index = -1;
-    index = itinerary[nDay].indexOf(parameter);
-    if(index!=-1){
-        itinerary[nDay].splice(index,1);
-    }
+    itinerary[nDay].splice(index,1);
 }
-
