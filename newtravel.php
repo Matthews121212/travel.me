@@ -4,8 +4,9 @@
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $email = $_SESSION["email"];
         $travel = $_POST["saveitinerary"];
-        $stmt = $dbconn->prepare("INSERT INTO itinerary (user_id, travel) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $travel);
+        $days = $_POST["daysitinerary"];
+        $stmt = $dbconn->prepare("INSERT INTO itinerary (user_id, travel, days) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $email, $travel, $days);
         $stmt->execute();
         $stmt->close();
         header("Location: myarea.php");
@@ -60,6 +61,7 @@
                 <label class="display-5 fw-bolder pt-5 pb-2">Completed your itinerary?</label>
                 <form action="newtravel.php" method="POST" onsubmit="return checksubmit()">
                     <input type="hidden" name="saveitinerary" id="saveitinerary"/>
+                    <input type="hidden" name="daysitinerary" id="daysitinerary"/>
                     <button type="submit" class="btn-primary btn mx-1">Submit</button>
                 </form>
             </div>

@@ -160,5 +160,7 @@ function checksubmit(){
         //Passo l'itinerario
         var itineraryObj = document.getElementById("saveitinerary");
         itineraryObj.value = JSON.stringify(itinerary);
+        var daysObj = document.getElementById("daysitinerary");
+        daysObj.value = itineraryDays;
     }
 }
