@@ -1,4 +1,18 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
+        $email = $_SESSION["email"];
+        $travel = $_POST["saveitinerary"];
+        $stmt = $dbconn->prepare("INSERT INTO itinerary (user_id, travel) VALUES (?, ?)");
+        $stmt->bind_param("ss", $email, $travel);
+        $stmt->execute();
+        $stmt->close();
+        header("Location: myarea.php");
+        $dbconn->close();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +43,8 @@
                 <label class="display-5 fw-bolder py-5">Search a new place</label>
                 <div class="container py-3">
                     <div class="input-group">
-                        <input type="search" onchange="findPlace()" class="form-control rounded" placeholder="Search a new place" aria-label="Search" aria-describedby="search-addon" id="search-place" />
-                        <button type="button" onclick="findPlace()" class="btn-primary btn mx-1">search</button>
+                        <input type="search" onchange="findPlace()" class="form-control rounded" placeholder="Enter a place" aria-label="Search" aria-describedby="search-addon" id="search-place" />
+                        <button type="button" onclick="findPlace()" class="btn-primary btn mx-1">Search</button>
                     </div>
                 </div>
                 <div class="container">
@@ -40,17 +54,17 @@
                 </div>
 
             </div>
-            <div class="col-sm-4 text-left">
-                <label class="display-5 fw-bolder py-5">Place info</label>
-                <ul class="list-group">
-                    <li class="list-group-item">Place Name:</li>
-                    <li class="list-group-item">Tel Number:</li>
-                    <li class="list-group-item">Street address:</li>
-                </ul>
-
+            <div class="col-sm-4 text-center">
+                <label class="display-5 fw-bolder py-5">Place map</label>
                 <div id="map"></div>
+                <label class="display-5 fw-bolder pt-5 pb-2">Completed your itinerary?</label>
+                <form action="newtravel.php" method="POST" onsubmit="return checksubmit()">
+                    <input type="hidden" name="saveitinerary" id="saveitinerary"/>
+                    <button type="submit" class="btn-primary btn mx-1">Submit</button>
+                </form>
             </div>
         </div>
+        
     </section>
 
     <?php include_once "assets/footer.html" ?>

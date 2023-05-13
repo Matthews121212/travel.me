@@ -1,6 +1,7 @@
 //Global variables
 var itineraryDays = 0;
 var itinerary = [];
+var markers = [];
 var map;
 
 function addDays(days) {
@@ -49,9 +50,15 @@ function addItineraryDays(days) {
         itinerary.push(day);
     }
     else if(days==-1 && itineraryDays>0){
-        $(".add-day-"+itineraryDays+"").remove();
-        itinerary.pop();
-        itineraryDays--;
+        if(itinerary[itineraryDays-1].length > 0){
+            alert('Unable to remove! Day '+ itineraryDays +' has places entered, remove them first!');
+            return false;
+        }
+        else{
+            $(".add-day-"+itineraryDays+"").remove();
+            itinerary.pop();
+            itineraryDays--;
+        }  
     }
 }
 
@@ -73,6 +80,7 @@ function addPlaceToDay(parameter){
         var placeMarker = L.marker([coord[0],coord[1]]).addTo(map)
         .bindPopup(place[0]+'')
         .openPopup();
+        markers.push(placeMarker);
     }
 }
 
@@ -123,8 +131,34 @@ function moveUpPlaceToDay(parameter,inputNumber,position){
 }
 
 function removePlaceToDay(parameter,inputNumber,position){
+    var place = parameter.split('&');
     var nDay = inputNumber-1;
     var index = $(".element-"+inputNumber+"-"+position+"").index();
     $(".element-"+inputNumber+"-"+position+"").remove();
     itinerary[nDay].splice(index,1);
+    //delete marker on the map
+    for(var k=0;k<markers.length;k++){
+        if(markers[k]._popup._content == place[0] ){
+            markers[k].remove();
+            markers.splice(k,1);
+        }
+    }
+}
+
+function checksubmit(){
+    if(itinerary.length < 1){
+        alert(`Unable to save! Your itinerary has 0 days!`);
+        return false;
+    }
+    else{
+        for(var j=0;j<itinerary.length;j++){
+            if(itinerary[j].length < 1){
+                alert('Unable to save! Day '+ (j+1) +' must have at least one location!');
+                return false;
+            }
+        }
+        //Passo l'itinerario
+        var itineraryObj = document.getElementById("saveitinerary");
+        itineraryObj.value = JSON.stringify(itinerary);
+    }
 }
