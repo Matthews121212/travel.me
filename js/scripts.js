@@ -164,3 +164,4 @@ function checksubmit(){
         daysObj.value = itineraryDays;
     }
 }
+
