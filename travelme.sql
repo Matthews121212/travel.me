@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 13, 2023 alle 19:45
+-- Creato il: Mag 19, 2023 alle 18:54
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -45,6 +45,17 @@ INSERT INTO `itinerary` (`user_id`, `travel_id`, `travel`, `days`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `session`
+--
+
+CREATE TABLE `session` (
+  `session_id` binary(32) NOT NULL,
+  `user_email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `user`
 --
 
@@ -63,6 +74,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Name`, `Surname`, `Email`, `Password`, `Date`, `Gender`, `Number`) VALUES
+('Adsd', 'sdas', 'a@cab', '$2y$10$2oyOUdCCg0pN7rO73BRGMOdaFWXc8dfyWpRUJ48vL3MEvHs6RHaIW', '2023-05-09', 'male', '2451555544'),
 ('Prova', 'Prova', 'prova@prova.it', '$2y$10$zMAS2Ty.9dekM2Kaf.MFg.AGp0nqb/o7A8q50C80cGtfobx5orv.W', '2023-05-02', 'male', '11112222');
 
 --
@@ -74,6 +86,12 @@ INSERT INTO `user` (`Name`, `Surname`, `Email`, `Password`, `Date`, `Gender`, `N
 --
 ALTER TABLE `itinerary`
   ADD PRIMARY KEY (`travel_id`);
+
+--
+-- Indici per le tabelle `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`session_id`);
 
 --
 -- Indici per le tabelle `user`

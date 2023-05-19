@@ -8,7 +8,7 @@
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $keepMeLoggedIn = $_POST['keepMeLoggedIn'];
+        $keepMeLoggedIn = $_POST["keepMeLoggedIn"];
         $stmt = $dbconn->prepare("SELECT password FROM user WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -16,13 +16,7 @@
         $correctPasswordHash = $result->fetch_column();
         $passwordMatches = $correctPasswordHash && password_verify($password, $correctPasswordHash);
         if ($passwordMatches) {
-            $_SESSION["email"] = $email;
-            $token = openssl_random_pseudo_bytes(16);
-            $token = bin2hex($token);
-            $stmt = $dbconn->prepare("UPDATE session SET token = ?, user_email = ?");
-            $stmt->bind_param("ss", $token, $email);
-            $stmt->execute();
-            setcookie("session_id", $token, $keepMeLoggedIn ? time() + 30 * 86400 : 0);
+            set_authenticated($email, $keepMeLoggedIn);
             header("Location: myarea.php");
         }
         $dbconn->close();
@@ -51,8 +45,8 @@
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
                     <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="keepMeLoggedIn" name="keepMeLoggedIn">
-                    <label class="form-check-label" for="keepMeLoggedIn">Keep me logged in</label>
+                        <input type="checkbox" class="form-check-input" id="keepMeLoggedIn" name="keepMeLoggedIn">
+                        <label class="form-check-label" for="keepMeLoggedIn">Keep me logged in</label>
                     </div>
                     <div class="row mt-3">
                         <div class="col-auto">
