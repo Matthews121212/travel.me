@@ -1,6 +1,7 @@
 <?php
     session_start();
-    if(isset($_SESSION["email"])) {
+    require "includes/authentication.php";
+    if(is_authenticated()) {
         header("Location: myarea.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
