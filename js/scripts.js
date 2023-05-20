@@ -42,7 +42,7 @@ function findPlace(){
 
 
 function addItineraryDays(days) {
-    
+    console.log("Aggiungo un giorno")
     if(days==1){
         var day = [];
         itineraryDays++;
