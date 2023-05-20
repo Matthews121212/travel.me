@@ -26,51 +26,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include_once "assets/navbar.php" ?>
 
     <!-- Content section-->
-    <section class="py-2">
+    <section class="p-2 g-2">
         <div class="row rounded g-5">
-            <h1 class="text-center py-5"> Make your own itinrary with us! </h1>
+            <h1 class="text-center fw-bolder py-5"> Make your own itinrary with us! </h1>
             <div class="col container-lg text-center rounded bg-light">
-                <h1 class="py-2 bg-dark rounded text-white">Your Itinerary</h1>
-                <div class="row gy-5">
-                    <form class="mx-1" role="search">
-                        <label class="">Add or remove Days</label>
-                        <button onclick="addItineraryDays(-1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
-                        <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
-                    </form>
-                </div>
-                <div class="add-day">
+                <div class="row text-center rounded bg-light">
+                    <h1 class="py-2 bg-dark rounded text-white">Your Itinerary</h1>
+                    <div class="row gy-2">
+                        <form class="row" action="newtravel.php" method="POST" onsubmit="return checksubmit()">
+                            <div class="col">
+                                <label>
+                                    <h5>Add or remove Days</h5>
+                                </label>
+                                <button onclick="addItineraryDays(-1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
+                                <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
+                            </div>
+                            <div class="col">
+                                <label>
+                                    <h5>Completed your itinerary?</h5>
+                                </label>
+                                <input type="hidden" name="saveitinerary" id="saveitinerary" />
+                                <input type="hidden" name="daysitinerary" id="daysitinerary" />
+                                <button type="submit" class="btn-secondary btn mx-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="add-day">
+                    </div>
                 </div>
             </div>
 
             <div class="col container-lg rounded g-5 m-0">
-                <div class= "row text-center rounded bg-light ">
+                <div class="row text-center rounded bg-light ">
                     <h1 class="py-2 bg-dark rounded text-white ">Search a new place</h1>
+                    <div class="container text-center rounded bg-light ">
+                        <h1 class="fw-bolder py-2">Place map</h1>
+                        <div id="map"></div>
+                    </div>
                     <div class="container py-3">
                         <div class="input-group">
                             <input type="search" onchange="findPlace()" class="form-control rounded" placeholder="Enter a place" aria-label="Search" aria-describedby="search-addon" id="search-place" />
                             <button type="button" onclick="findPlace()" class="btn-primary btn mx-1">Search</button>
                         </div>
+
                     </div>
                     <div class="container">
-                        <ul class="list-group list-result align-middle">
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="row rounded ">
-
-                    <div class="container-sm text-center">
-                        <h1 class="mt-4 py-5">Place map</h1>
-                        <div id="map"></div>
-                        <label class="display-5 fw-bolder pt-5 pb-2">Completed your itinerary?</label>
-                        <form action="newtravel.php" method="POST" onsubmit="return checksubmit()">
-                            <input type="hidden" name="saveitinerary" id="saveitinerary" />
-                            <input type="hidden" name="daysitinerary" id="daysitinerary" />
-                            <button type="submit" class="btn-primary btn mx-1">Submit</button>
-                        </form>
+                        <form class="form-horizontal">
+                            <ul class="list-group list-result align-middle">
+                            </ul>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
