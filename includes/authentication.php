@@ -35,7 +35,7 @@ function set_not_authenticated() {
     $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
     $stmt = $dbconn->prepare("DELETE FROM session WHERE session_id = ?");
     $token = null;
-    $stmt->bind_param("sb", $email, $token);
+    $stmt->bind_param("b", $token);
     $token = hex2bin($_COOKIE["session_id"]);
     $stmt->send_long_data(0, $token);
     $stmt->execute();
