@@ -23,17 +23,6 @@ function createMap(){
     // per cancellarlo basta fare markername.remove()
 }
 
-function createMap(coordinate,mapid){
-    map = L.map(mapid).setView([coordinate], 13);
-    // Map layer
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    // per cancellarlo basta fare markername.remove()
-}
-
 
 function findPlace(){
     if(document.getElementById("search-place").value.length <=3)

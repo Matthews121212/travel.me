@@ -6,7 +6,7 @@
         <title>Travel.me</title>
     </head>
     
-    <body>
+    <body onload="createMap()">
         <?php include_once "assets/navbar.php" ?>
 
         <?php
@@ -23,22 +23,23 @@
         if ($result) {
             echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' results: </h2>';
             
-
             foreach ($result as $record) {
                 //$id = $record['travel_id'];
                 $travel = json_decode($record['travel']);
                 $variabile = 1;
-                echo '<div class="container py-3">';
-                echo '<ul class="list-group">';
+                echo '<div class="row  py-3 ">';
+                echo '<ul class=" col py-3 list-group">';
                 foreach ($travel as $daytravel) {
-                    echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li><div "id="map-'.$variabile.'"></div>';
+                    echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li>';
                     foreach ($daytravel as $placetravel) {
-                        echo '<li onload="createMap('.explode("&",$placetravel)[1].',map-'.$variabile.')" class="list-group-item">'. explode("&",$placetravel)[0] .'</li>';
+                        echo '<li class="list-group-item text-center">'. explode("&",$placetravel)[0] .'</li>';
                     }
                     $variabile += 1;
                 }
                 echo '</ul>';
-                echo '</div>';   
+                
+                echo '<div id="map" class="col py-3"></div>';
+                  
             }
 
             
