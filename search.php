@@ -28,7 +28,7 @@
                 $travel = json_decode($record['travel']);
                 $variabile = 1;
                 echo '<div class="row  py-3 ">';
-                echo '<ul class=" col py-3 list-group">';
+                echo '<ul class=" col g-5 m-0 list-group">';
                 foreach ($travel as $daytravel) {
                     echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li>';
                     foreach ($daytravel as $placetravel) {
@@ -38,7 +38,7 @@
                 }
                 echo '</ul>';
                 
-                echo '<div id="map" class="col py-3"></div>';
+                echo '<div id="map" class="col m-0"></div>';
                   
             }
 
