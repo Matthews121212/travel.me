@@ -50,7 +50,8 @@ INSERT INTO `itinerary` (`user_id`, `travel_id`, `travel`, `days`) VALUES
 
 CREATE TABLE `session` (
   `session_id` binary(32) NOT NULL,
-  `user_email` varchar(255) NOT NULL
+  `user_email` varchar(255) NOT NULL,
+  `expiration` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
