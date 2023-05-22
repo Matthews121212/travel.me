@@ -19,13 +19,12 @@
             <!-- Search bar-->
             <div class="text-center my-2 justify-content-center text-white">
                     <div class="container">
-                        <form class="d-inline-flex mx-1" role="search" action="" id="myForm" method="POST">
+                        <form class="d-inline-flex mx-1" role="search" action="search.php" id="myForm" method="POST">
                             <input class="form-control me-2" style="flex: 6;" type="search" id="place" name="place" placeholder="Choose destination and days of itinerary" aria-label="Search" required>
                             <button onclick="addDays(-1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
                             <input type="text" style="flex: 1;" value="1" id="quantity" name="quantity" class="form-control mx-1" readonly="readonly" required>
                             <button onclick="addDays(1)" class="btn-secondary btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
-                            <button class="btn-primary btn mx-1" onclick="setAction('search.php')" type="submit">Search</button>
-                            <button class="btn-primary btn mx-1" onclick="setAction('generatetravel.php')" type="submit">Generate</button>
+                            <button class="btn-primary btn mx-1" type="submit">Search</button>
                         </form>
                     </div>
             </div>

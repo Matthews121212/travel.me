@@ -165,7 +165,3 @@ function checksubmit(){
     }
 }
 
-function setAction(action) {
-    // Imposta l'attributo action del form
-    document.getElementById('myForm').action = action;
-  }
