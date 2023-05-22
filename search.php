@@ -16,7 +16,7 @@
         $placename = ucfirst($_POST["place"]);
         $place = '%' . $placename . '%';
         $quantity = $_POST["quantity"];
-        $stmt = $dbconn->prepare("SELECT travel_id, travel FROM itinerary WHERE travel LIKE ? AND days = ?");
+        $stmt = $dbconn->prepare("SELECT user_id, travel_id, travel FROM itinerary WHERE travel LIKE ? AND days = ?");
         $stmt->bind_param("ss", $place, $quantity);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -27,8 +27,10 @@
                 //$id = $record['travel_id'];
                 $travel = json_decode($record['travel']);
                 $variabile = 1;
+                echo '<hr class="hr" />';
                 echo '<div class="row  py-3 ">';
-                echo '<ul class=" col g-5 m-0 list-group">';
+                echo '<h3>Travel by '.$record['user_id'].'</h3>';
+                echo '<ul class=" col list-group">';
                 foreach ($travel as $daytravel) {
                     echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li>';
                     foreach ($daytravel as $placetravel) {
@@ -38,7 +40,7 @@
                 }
                 echo '</ul>';
                 
-                echo '<div id="map" class="col m-0"></div>';
+                echo '<div id="map" class="col "></div>';
                   
             }
 
