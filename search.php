@@ -31,9 +31,9 @@
                 echo '<div class="container py-3">';
                 echo '<ul class="list-group">';
                 foreach ($travel as $daytravel) {
-                    echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li>';
+                    echo '<li class="list-group-item text-center text-primary fw-bold"> Day '. $variabile .'</li><div "id="map-'.$variabile.'"></div>';
                     foreach ($daytravel as $placetravel) {
-                        echo '<li class="list-group-item">'. $placetravel .'</li>';
+                        echo '<li onload="createMap('.explode("&",$placetravel)[1].',map-'.$variabile.')" class="list-group-item">'. explode("&",$placetravel)[0] .'</li>';
                     }
                     $variabile += 1;
                 }
