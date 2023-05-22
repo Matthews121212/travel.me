@@ -27,7 +27,7 @@
             $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHash, $date, $gender, $number);
             $stmt->execute();
             $stmt->close();
-            $_SESSION["email"] = $email;
+            set_authenticated($email, false);
             header("Location: myarea.php");
         }
         $dbconn->close();
@@ -49,7 +49,7 @@
                 class="img-fluid" alt="travel image">
             </div>
             <div class="col">
-                <form action="register.php" method="POST">
+                <form action="register.php" method="POST" id="register-form" onsubmit="validateForm(event)">
                     <div class="row">
                         <div class="col"> 
                             <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name" required><br>
@@ -64,17 +64,17 @@
                     <h6 class="form-check form-check-inline form-control-lg">Gender: </h6>
 
                     <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" name="gender" value="female" required>
+                        <input class="form-check-input" type="radio" id="femaleGender" name="gender" value="female" required>
                         <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
 
                     <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" name="gender" value="male" required>
+                        <input class="form-check-input" type="radio" id="maleGender" name="gender" value="male" required>
                         <label class="form-check-label" for="maleGender">Male</label>
                     </div>
 
                     <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" name="gender" value="other" required>
+                        <input class="form-check-input" type="radio" id="otherGender" name="gender" value="other" required>
                         <label class="form-check-label" for="otherGender">Other</label>
                     </div>
                     
@@ -86,8 +86,8 @@
                     <input type="tel" name="number" class="form-control form-control-lg" placeholder="Enter phone number" required><br>
 
                     <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                    <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label text-secondary" for="form2Example3">
+                    <input class="form-check-input me-3" type="checkbox" id="termsAndConditions">
+                    <label class="form-check-label text-secondary" for="termsAndConditions">
                     I do accept the <a href="#!" class="text-primary"><u>Terms and Conditions</u></a> of your
                     site.
                     </label>
@@ -111,5 +111,6 @@
         </div>
     </div>
     <?php include_once "assets/footer.html" ?>
+    <script src="js/register.js"></script>
 </body>
 </html>

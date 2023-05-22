@@ -8,7 +8,7 @@
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $keepMeLoggedIn = $_POST["keepMeLoggedIn"];
+        $keepMeLoggedIn = isset($_POST["keepMeLoggedIn"]) && $_POST["keepMeLoggedIn"];
         $stmt = $dbconn->prepare("SELECT password FROM user WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -16,6 +16,7 @@
         $correctPasswordHash = $result->fetch_column();
         $passwordMatches = $correctPasswordHash && password_verify($password, $correctPasswordHash);
         if ($passwordMatches) {
+            $_SESSION["email"] = $email;
             set_authenticated($email, $keepMeLoggedIn);
             header("Location: myarea.php");
         }
@@ -44,10 +45,8 @@
                 <form action="login.php" method="POST">
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="keepMeLoggedIn" name="keepMeLoggedIn">
-                        <label class="form-check-label" for="keepMeLoggedIn">Keep me logged in</label>
-                    </div>
+                    <input type="checkbox" name="keepMeLoggedIn" class="form-check-input" id="keepMeLoggedIn">
+                    <label class="form-check-label" for="keepMeLoggedIn">Keep me logged in</label>
                     <div class="row mt-3">
                         <div class="col-auto">
                         <button type="submit" class="btn btn-lg btn-primary">Sign in</button><br>
