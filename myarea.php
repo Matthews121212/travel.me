@@ -59,10 +59,12 @@
                             </div>
                             <div class="col">
                                 <div class="panel panel-info panel-colorful">
-                                    <div class="panel-body text-center">
-                                        <p class="text-uppercase mar-btm text-sm">User info</p>
-                                        <i class="bi bi-person-vcard-fill display-1"></i>
-                                    </div>
+                                    <a class="link" href="userinfo.php">
+                                        <div class="panel-body text-center">
+                                            <p class="text-uppercase mar-btm text-sm">User info</p>
+                                            <i class="bi bi-person-vcard-fill display-1"></i>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>        
                         </div>
