@@ -7,7 +7,7 @@
     <title>Travel.me</title>
 </head>
 
-<body onload="createMap()">
+<body>
     <?php include_once "assets/navbar.php" ?>
 
     <?php
@@ -20,33 +20,33 @@
         $stmt->bind_param("ss", $place, $quantity);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result) {//DB ITINERARY
-            echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' Database results: </h2>';
-
+        echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' Database results: </h2>';
+        if ($result->num_rows > 0) {//DB ITINERARY
+            $coord = array();
+            $resultquery = 1;
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
                 $variabile = 1;
                 echo '<hr class="hr" />';
                 echo '<div class="row  py-3 ">';
-                echo '<h3>Travel by ' . $record['user_id'] . '</h3>';
+                echo '<h3 class="text-center">Travel by ' . $record['user_id'] . '</h3>';
                 echo '<ul class=" col list-group">';
                 foreach ($travel as $daytravel) {
                     echo '<li class="list-group-item text-center text-primary fw-bold"> Day ' . $variabile . '</li>';
                     foreach ($daytravel as $placetravel) {
                         echo '<li class="list-group-item text-center">' . explode("&", $placetravel)[0] . '</li>';
-
+                        $coord[] = explode("&", $placetravel)[1];
                     }
                     $variabile += 1;
                 }
                 echo '</ul>';
 
-                echo '<div id="map" class="col "></div>';
+                echo '<div id="map-'. $resultquery .'" class="col"></div>';
+                $resultquery += 1;
 
             }
-
-
         } else {
-            echo "Nessun risultato trovato.";
+            echo '<h3 class="text-center">No results found.</h3>';
         }
         $dbconn->close();
         //AI GENERATE ITINERARY
@@ -91,6 +91,18 @@
         }
     }
     ?>
+
+    <script>
+        var mapNumber = <?php echo $resultquery; ?>;
+        for(var n=0;n<mapNumber;n++){
+            var map = L.map('map-'+(n+1)+'').setView([41.8902338,12.4907832], 13);
+            // Map layer
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+        }
+    </script>
 
     <?php include_once "assets/footer.html" ?>
 
