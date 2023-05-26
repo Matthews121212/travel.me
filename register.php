@@ -41,17 +41,17 @@
 </head>
 <body>
     <?php include_once "assets/navbar.php" ?>
-    <div class="container ">
+    <div class="container">
         <div class="row align-items-center">
             <h2 class="text-center text-primary fw-bold fs-1 py-3">Create new account</h2>
-            <div class="col ">
+            <div class="col">
                 <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/5571540-itinerario-di-viaggio-in-aereo-perno-sulla-mappa-del-mondo-idea-di-viaggio-di-viaggio-vettoriale.jpg"
                 class="img-fluid" alt="travel image">
             </div>
             <div class="col">
                 <form action="register.php" method="POST" id="register-form" onsubmit="validateForm(event)">
                     <div class="row">
-                        <div class="col"> 
+                        <div class="col">
                             <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name" required><br>
                         </div>
                         <div class="col"> 
@@ -62,17 +62,14 @@
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
                     
                     <h6 class="form-check form-check-inline form-control-lg">Gender: </h6>
-
                     <div class="form-check form-check-inline form-control-lg">
                         <input class="form-check-input" type="radio" id="femaleGender" name="gender" value="female" required>
                         <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
-
                     <div class="form-check form-check-inline form-control-lg">
                         <input class="form-check-input" type="radio" id="maleGender" name="gender" value="male" required>
                         <label class="form-check-label" for="maleGender">Male</label>
                     </div>
-
                     <div class="form-check form-check-inline form-control-lg">
                         <input class="form-check-input" type="radio" id="otherGender" name="gender" value="other" required>
                         <label class="form-check-label" for="otherGender">Other</label>
