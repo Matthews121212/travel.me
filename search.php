@@ -11,6 +11,7 @@
     <?php include_once "assets/navbar.php" ?>
 
     <?php
+    $itinerary = array();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $placename = ucwords($_POST["place"]);
@@ -21,29 +22,38 @@
         $stmt->execute();
         $result = $stmt->get_result();
         echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' Database results: </h2>';
-        if ($result->num_rows > 0) {//DB ITINERARY
+        if ($result->num_rows > 0) { //DB ITINERARY
             $coord = array();
             $resultquery = 1;
+
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
+                
+                echo "<script>console.log('Debug Objects: " . implode($travel) . "' );</script>";
                 $variabile = 1;
                 echo '<hr class="hr" />';
-                echo '<div class="row  py-3 ">';
-                echo '<h3 class="text-center">Travel by ' . $record['user_id'] . '</h3>';
-                echo '<ul class=" col list-group">';
+                echo '<div class="row mx-5 d-flex justify-content-center py-3 ">';
+                echo '<h3 class="text-center">Travel by ' . $record['user_id'] . '<button onclick="loadItinerary(' .$travel. ')" class="btn-secondary btn mx-1" type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
+                echo '<table class="table table-striped table-responsive. align-middle">';
+                echo '<thead> <tr>';
                 foreach ($travel as $daytravel) {
-                    echo '<li class="list-group-item text-center text-primary fw-bold"> Day ' . $variabile . '</li>';
+                    echo ' <th> Day ' . $variabile . '</th>';
+                    $variabile += 1;
+                }
+                echo '</tr></thead><tbody>';
+                foreach ($travel as $daytravel) {
+                    echo ' <tr>';
                     foreach ($daytravel as $placetravel) {
-                        echo '<li class="list-group-item text-center">' . explode("&", $placetravel)[0] . '</li>';
+                        echo '<td>' . explode("&", $placetravel)[0] . '</td>';
                         $coord[] = explode("&", $placetravel)[1];
                     }
                     $variabile += 1;
+                    echo ' </tr>';
                 }
-                echo '</ul>';
+                echo '</tbody></table></div>';
 
-                echo '<div id="map-'. $resultquery .'" class="col"></div>';
+                echo '<div id="map-' . $resultquery . '" class="col"></div>';
                 $resultquery += 1;
-
             }
         } else {
             echo '<h3 class="text-center">No results found.</h3>';
@@ -94,8 +104,8 @@
 
     <script>
         var mapNumber = <?php echo $resultquery; ?>;
-        for(var n=0;n<mapNumber;n++){
-            var map = L.map('map-'+(n+1)+'').setView([41.8902338,12.4907832], 13);
+        for (var n = 0; n < mapNumber; n++) {
+            var map = L.map('map-' + (n + 1) + '').setView([41.8902338, 12.4907832], 13);
             // Map layer
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
