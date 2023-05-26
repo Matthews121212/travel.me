@@ -26,10 +26,12 @@
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        $name = $result->fetch_column(1);
-        $surname = $result->fetch_column(2);
-        $gender = $result->fetch_column(3);
-        $phoneNumber = $result->fetch_column(4);
+        $info = $result->fetch_assoc();
+        $name = $info["name"];
+        $surname = $info["surname"];
+        $birthday = $info["date"];
+        $gender = $info["gender"];
+        $phoneNumber = $info["number"];
         $result->close();
         $stmt->close();
     }
@@ -102,7 +104,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php include_once "assets/footer.html" ?>
     <script src="js/userinfo.js"></script>
 </body>
