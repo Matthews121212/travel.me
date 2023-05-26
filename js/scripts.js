@@ -172,15 +172,3 @@ function setAction(action) {
 }
 
 
-function loadItinerary(itinerary) {
-    const itinerarySring = JSON.stringify(itinerary)
-    localStorage.setItem('itinerary', itinerarySring);;
-    window.open("newtravel.php");
-}
-
-function downloadItinerary() {
-    const itinerarySring = localStorage.getItem('itinerary');
-    const itinerary = JSON.parse(itinerarySring);
-    $(".add-day").append(itinerary);
-    console.log(itinerary);
-}

@@ -12,6 +12,7 @@
 
     <?php
     $itinerary = array();
+    $jsonitinerary = array();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $placename = ucwords($_POST["place"]);
@@ -28,12 +29,11 @@
 
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
-                
-                echo "<script>console.log('Debug Objects: " . implode($travel) . "' );</script>";
+                $travelencoded = json_encode($record);
                 $variabile = 1;
                 echo '<hr class="hr" />';
                 echo '<div class="row mx-5 d-flex justify-content-center py-3 ">';
-                echo '<h3 class="text-center">Travel by ' . $record['user_id'] . '<button onclick="loadItinerary(' .$travel. ')" class="btn-secondary btn mx-1" type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
+                echo '<h3 class="text-center">Travel by ' . $record['user_id'] . '<button id="' . $resultquery . '" onclick="loadItinerary(' . $resultquery . ')" class="btn-secondary btn mx-1" type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
                 echo '<table class="table table-striped table-responsive. align-middle">';
                 echo '<thead> <tr>';
                 foreach ($travel as $daytravel) {
@@ -111,6 +111,22 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
+        }
+    </script>
+
+    <script>
+        $_SESSION['varname'] = $var_value;
+
+        function loadItinerary(itinerary) {
+            localStorage.setItem('itinerary', <?php echo json_encode($result[$itinerary]) ;  ?>);
+            window.open("newtravel.php");
+        }
+
+        function downloadItinerary() {
+            const itinerarySring = localStorage.getItem('itinerary');
+            const itinerary = JSON.parse(itinerarySring);
+            $(".add-day").append(itinerary);
+            console.log(itinerary);
         }
     </script>
 
