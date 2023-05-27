@@ -48,29 +48,29 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Westminster Abbey</td>
-                                    <td>Westminster Abbey</td>
+                                    <td>Buckingham Palace</td>
+                                    <td>The Tower Bridge</td>
                                     <td>Westminster Abbey</td>
                                   </tr>
                                   <tr>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
+                                    <td>The British Museum</td>
+                                    <td>Tate Modern</td>
+                                    <td>Houses of Parliament and Big Ben</td>
                                   </tr>
                                   <tr>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
+                                    <td>Covent Garden</td>
+                                    <td>Borough Market</td>
+                                    <td>The British Library</td>
                                   </tr>
                                   <tr>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
+                                    <td>St. Paul's Cathedral</td>
+                                    <td>Shakespeare's Globe Theatre</td>
+                                    <td>Hyde Park</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Tower of London</td>
+                                    <td>The Shard</td>
+                                    <td>West End Theatre District</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -92,29 +92,29 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
+                                    <td>Sagrada Familia</td>
+                                    <td>Casa Batlló</td>
+                                    <td>Casa Milà (La Pedrera)</td>
                                   </tr>
                                   <tr>
-                                    <td>Westminster Abbey</td>
-                                    <td>Westminster Abbey</td>
-                                    <td>Westminster Abbey</td>
+                                    <td>Park Güell</td>
+                                    <td>Picasso Museum</td>
+                                    <td>Park de la Ciutadella</td>
                                   </tr>
                                   <tr>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
+                                    <td>Gothic Quarter</td>
+                                    <td>Barceloneta Beach</td>
+                                    <td>Camp Nou</td>
                                   </tr>
                                   <tr>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
+                                    <td>La Boqueria Market</td>
+                                    <td>Poble Espanyol</td>
+                                    <td>El Born</td>
                                   </tr>
                                   <tr>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
+                                    <td>Montjuïc Hill</td>
+                                    <td>Magic Fountain of Montjuïc</td>
+                                    <td>Tibidabo</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -126,7 +126,7 @@
                     <div class="container-fluid container-itinerario " style="background-image: url('https://www.franciaturismo.net/wp-content/uploads/sites/4/parigi-hd.jpg');">  
                         <div class="row text-bg-primary text-white">
                             <div class="bg-gradient fw-bold fs-1">Paris</div>
-                            <table class="table text-white">
+                            <table class="table table-responsive. align-middle text-white">
                                 <thead>
                                   <tr>
                                     <th scope="col">Day 1</th>
@@ -136,29 +136,29 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
-                                    <td>Big Ben and Westminster</td>
+                                    <td>Eiffel Tower</td>
+                                    <td>Palace of Versailles</td>
+                                    <td>Musée de l'Orangerie</td>
                                   </tr>
                                   <tr>
-                                    <td>Westminster Abbey</td>
-                                    <td>Westminster Abbey</td>
-                                    <td>Westminster Abbey</td>
+                                    <td>Louvre Museum</td>
+                                    <td>Musée d'Orsay</td>
+                                    <td>Saint-Germain-des-Prés</td>
                                   </tr>
                                   <tr>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
-                                    <td>Buckingham Palace e Cambio della Guardia</td>
+                                    <td>Notre-Dame Cathedral</td>
+                                    <td>Champs-Élysées</td>
+                                    <td>Catacombs of Paris</td>
                                   </tr>
                                   <tr>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
-                                    <td>Trafalgar Square</td>
+                                    <td>Montmartre</td>
+                                    <td>Sainte-Chapelle</td>
+                                    <td>Père Lachaise Cemetery</td>
                                   </tr>
                                   <tr>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
-                                    <td>British Museum o National Gallery</td>
+                                    <td>Seine River Cruise</td>
+                                    <td>Luxembourg Gardens</td>
+                                    <td>Moulin Rouge</td>
                                   </tr>
                                 </tbody>
                               </table>

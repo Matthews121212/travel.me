@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </form>
                     </div>
-                    <div class="add-day" onload="downloadItinerary()">
+                    <div class="add-day">
                     </div>
                 </div>
             </div>

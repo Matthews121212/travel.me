@@ -13,7 +13,7 @@ function addDays(days) {
 
 
 function createMap() {
-    map.append(L.map('map').setView([41.8902338, 12.4907832], 13));
+    map = L.map('map').setView([41.8902338,12.4907832], 13);
     // Map layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -172,15 +172,3 @@ function setAction(action) {
 }
 
 
-function loadItinerary(itinerary) {
-    const itinerarySring = JSON.stringify(itinerary)
-    localStorage.setItem('itinerary', itinerarySring);;
-    window.open("newtravel.php");
-}
-
-function downloadItinerary() {
-    const itinerarySring = localStorage.getItem('itinerary');
-    const itinerary = JSON.parse(itinerarySring);
-    $(".add-day").append(itinerary);
-    console.log(itinerary);
-}
