@@ -13,7 +13,7 @@ function addDays(days) {
 
 
 function createMap() {
-    map.append(L.map('map').setView([41.8902338, 12.4907832], 13));
+    map = L.map('map').setView([41.8902338,12.4907832], 13);
     // Map layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
