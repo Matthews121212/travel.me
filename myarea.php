@@ -51,10 +51,12 @@
                             </div>
                             <div class="col">
                                 <div class="panel panel-danger panel-colorful">
-                                    <div class="panel-body text-center">
-                                        <p class="text-uppercase mar-btm text-sm">My Travel</p>
-                                        <i class="bi bi-journal-bookmark-fill display-1"></i>
-                                    </div>
+                                    <a class="link" href="mytravel.php">
+                                        <div class="panel-body text-center">
+                                            <p class="text-uppercase mar-btm text-sm">My Travel</p>
+                                            <i class="bi bi-journal-bookmark-fill display-1"></i>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col">
