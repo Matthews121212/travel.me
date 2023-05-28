@@ -7,7 +7,7 @@
     }
     $email = $_SESSION["email"];
     $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $newEmail = $_POST["email"];
@@ -116,28 +116,25 @@
                         <div class="invalid-tooltip">Please provide a valid phone number</div>
                     </div>
                     <div class="form-floating mb-3" hidden>
-                        <input type="text" class="form-control needs-validation" id="oldPassword" name="oldPassword">
+                        <input type="password" class="form-control needs-validation" id="oldPassword" name="oldPassword">
                         <label for="oldPassword">Old password</label>
                         <div class="invalid-tooltip">The password is incorrect</div>
                     </div>
                     <div class="form-floating mb-3" hidden>
-                        <input type="text" class="form-control needs-validation" id="newPassword" name="newPassword">
+                        <input type="password" class="form-control needs-validation" id="newPassword" name="newPassword">
                         <label for="newPassword">New password</label>
                         <div class="invalid-tooltip">Please provide a password</div>
                     </div>
                     <div class="form-floating mb-3" hidden>
-                        <input type="text" class="form-control needs-validation" id="confirmPassword" name="confirmPassword">
+                        <input type="password" class="form-control needs-validation" id="confirmPassword" name="confirmPassword">
                         <label for="confirmPassword">Confirm new password</label>
                         <div class="invalid-tooltip">The password doesn't match</div>
                     </div>
                 </form>
                 <span id="password-change-message">
                 <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($passwordMatches)) {
-                        if ($passwordMatches)
-                            echo "The password has been successfully changed";
-                        else
-                            echo "Incorrect password!";
+                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($passwordMatches) && $passwordMatches) {
+                        echo "The password has been successfully changed";
                     }
                 ?>
                 </span>

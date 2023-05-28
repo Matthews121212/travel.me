@@ -35,46 +35,90 @@ function modifyUserInfo(cancel, password) {
 }
 
 function saveModify() {
-    if (validateForm())
-        form.submit();
-}
-
-function checkValidity(input) {
-    const isPasswordField = input.id === "oldPassword" || input.id === "newPassword" || input.id === "confirmPassword";
-    if (passwordMode && isPasswordField && input.value === "")
-        return false;
-    else if (!isPasswordField && input.value === "")
-        return false;
-    return input.checkValidity();
-}
-
-function validateForm() {
-    var valid = true;
-    Array.from(inputs).forEach(input => {
-        if(checkValidity(input)) {
-            input.classList.add("is-valid");
-            input.classList.remove("is-invalid");
-        }
-        else {
-            valid = false;
-            input.classList.add("is-invalid");
-            input.classList.remove("is-valid");
-        }
+    validateForm(function (valid) {
+        if (valid)
+            form.submit();
     });
-    return valid;
+}
+
+function checkValidity(input, callback) {
+    const isPasswordField = input.id === "oldPassword" || input.id === "newPassword" || input.id === "confirmPassword";
+    let regex = /^./;
+    if (passwordMode) {
+        if (!isPasswordField)
+            return callback(true);
+        if (input.value === "")
+            return callback(false);
+        if (input.id === "confirmPassword" && input.value !== document.getElementById("newPassword").value)
+            return callback(false);
+        if (input.id === "oldPassword") {
+            $.ajax({
+                url: "userinfo_ajax.php",
+                method: "POST",
+                data: {
+                    password: input.value
+                },
+                success: function(response) {
+                    callback(response);
+                },
+            });
+            return;
+        }
+    }
+    else {
+        if (isPasswordField)
+            return callback(true);
+        if (input.value === "")
+            return callback(false);
+        if (input.id === "name" || input.id === "surname")
+            regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+        else if (input.id === "phoneNumber")
+            regex = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+    }
+    callback(regex.test(input.value) && input.checkValidity());
+}
+
+function validateForm(callback) {
+    let valid = true;
+
+    const promises = [];
+    Array.from(inputs).forEach(input => {
+        const promise = new Promise(function(resolve) {
+            checkValidity(input, function(result) {
+                if(result) {
+                    input.classList.remove("is-invalid");
+                    input.classList.add("is-valid");
+                }
+                else {
+                    valid = false;
+                    input.classList.remove("is-valid");
+                    input.classList.add("is-invalid");
+                }
+                resolve();
+            });
+        });
+
+        promises.push(promise);
+    });
+    
+    Promise.all(promises).then(function() {
+        callback(valid);
+    });
 }
 
 Array.from(inputs).forEach(input => {
-  input.addEventListener('blur', event => {
+  input.addEventListener('blur', () => {
     if (!modifying)
         return;
-    if(checkValidity(input)) {
-        input.classList.add("is-valid");
-        input.classList.remove("is-invalid");
-    }
-    else {
-        input.classList.add("is-invalid");
-        input.classList.remove("is-valid");
-    }
+    checkValidity(input, function(result) {
+        if(result) {
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+        }
+        else {
+            input.classList.remove("is-valid");
+            input.classList.add("is-invalid");
+        }
+    });
   }, false)
 });
