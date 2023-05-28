@@ -84,7 +84,7 @@ function addPlaceToDay(parameter) {
     }
 }
 
-function addPlaceToDay(parameter,day) {
+function loadPlaceToDay(parameter,day) {
     var place = parameter.split('&');
     var inputNumber = day;
     if (inputNumber > itineraryDays) {

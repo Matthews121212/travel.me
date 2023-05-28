@@ -47,11 +47,12 @@
                 echo '</tr></thead><tbody>';
 
                 $numColumns = count($travel);
-
+                echo json_encode($travel);
                 for ($i = 0; $i < $numColumns; $i++) {
                     echo '<tr>';
                     foreach ($travel as $daytravel) {
                         if ($daytravel[$i] ?? null) {
+                            echo $i;
                             $placetravel = $daytravel[$i];
                             echo '<td>' . explode("&", $placetravel)[0] . '</td>';
                         } else {

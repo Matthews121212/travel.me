@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         addItineraryDays(1);
                         console.log(travel[i]);
                         for (var j = 0; j < travel[i].length; j++) {
-                            addPlaceToDay(travel[i][j], i + 1);
+                            loadPlaceToDay(travel[i][j], i + 1);
                             console.log(travel[i][j]);
                         }
                     }
