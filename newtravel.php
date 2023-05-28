@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Content section-->
     <section class="p-2 g-2">
         <div class="row rounded g-5">
-            <h1 class="text-center fw-bolder py-5"> Make your own itinrary with us! </h1>
+            <h1 class="text-center fw-bolder py-5"> Make your own itinerary with us! </h1>
             <div class="col container-lg text-center rounded bg-light">
                 <div class="row text-center rounded bg-light">
                     <h1 class="py-2 bg-dark rounded text-white">Your Itinerary</h1>

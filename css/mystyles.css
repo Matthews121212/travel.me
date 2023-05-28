@@ -87,7 +87,12 @@
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
   background-repeat: no-repeat; 
   background-size: cover;
-  background-position-y: 60%;
+  background-position-y: 50%;
   position: relative;
   min-height: 50rem;
+}
+
+.text-mail {
+  --bs-text-opacity: 1;
+  color: #cbd1d6 !important;
 }

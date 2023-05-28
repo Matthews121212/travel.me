@@ -168,7 +168,6 @@
             </ul>
         
 
-        <div id="ww_f03b78024e4c" v='1.3' loc='id' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":["wl4529"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#000000","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#FFFFFF17"}'>Weather Data Source: <a href="https://oneweather.org/paris/" id="ww_f03b78024e4c_u" target="_blank">Weather Paris tomorrow hourly</a></div><script async src="https://app1.weatherwidget.org/js/?id=ww_f03b78024e4c"></script>
         </section>
         <?php include_once "assets/footer.html" ?>
     

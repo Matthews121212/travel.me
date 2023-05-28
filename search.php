@@ -92,13 +92,13 @@
 
         $err = "";
         $response = '{"_id": "64690c22a2ede0dd399c8cc8","plan": [{"day": 1,"activities": [{"time": "9:00 AM","description": "Arrive in Rome and check-in to hotel"},{"time": "11:00 AM","description": "Visit the Vatican Museums"},{"time": "2:00 PM","description": "Explore St Peters Basilica"},{"time": "4:00 PM","description": "Tour the Colosseum"},{"time": "7:00 PM","description": "Dine at a local restaurant"}]},{"day": 2,"activities": [{"time": "9:00 AM","description": "Visit the Roman Forum"},{"time": "12:00 PM","description": "Explore the Pantheon"},{"time": "3:00 PM","description": "Walk around Piazza Navona"},{"time": "6:00 PM","description": "Visit the Trevi Fountain"},{"time": "9:00 PM","description": "Experience Romes nightlife"}]},{"day": 3,"activities": [{"time": "10:00 AM","description": "Take a day trip to Pompeii"},{"time": "3:00 PM","description": "Return to Rome and explore Trastevere neighborhood"},{"time": "6:00 PM","description": "Visit the Spanish Steps"},{"time": "8:00 PM","description": "Enjoy a final dinner in Rome"}]}],"key": "3-rome"}';
-        $result = json_decode($response);
+        $resultai = json_decode($response);
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
             echo '<div class="container py-3">';
             echo '<ul class="list-group">';
-            foreach ($result->plan as $days) {
+            foreach ($resultai->plan as $days) {
                 echo '<div class="row py-3 add-day-' . $days->day . '"><label class="ft-2 fw-bolder py-3">Day ' . $days->day . '</label><div class="container"><ul class="list-group item-day-' . $days->day . '"></ul></div></div>';
                 foreach ($days->activities as $activity) {
                     echo '<li class="list-group-item">' . $activity->description . '</li>';
@@ -110,17 +110,6 @@
     }
     ?>
 
-    <script>
-        var mapNumber = <?php echo $resultquery; ?>;
-        for (var n = 0; n < mapNumber; n++) {
-            var map = L.map('map-' + (n + 1) + '').setView([41.8902338, 12.4907832], 13);
-            // Map layer
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-        }
-    </script>
 
     <script>
         function loadItinerary(travel_id) {
