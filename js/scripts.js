@@ -84,6 +84,28 @@ function addPlaceToDay(parameter) {
     }
 }
 
+function addPlaceToDay(parameter,day) {
+    var place = parameter.split('&');
+    var inputNumber = day;
+    if (inputNumber > itineraryDays) {
+        alert(`Select Days error! Your itinerary is only ${itineraryDays} days long!`);
+        return false;
+    }
+    else {
+        itinerary[inputNumber - 1].push(parameter);
+        var position = itinerary[inputNumber - 1].length;
+        $(".item-day-" + inputNumber + "").append('<li class="list-group-item list-group-numbered element-' + inputNumber + '-' + position + '"> <div class="row "> <div class="col-8 align-middle"> ' + place[0] + ' </div> <div class="col-4 align-middle"> <div class="btn-toolbar btn-group"><button type="button" id="remove-button" onclick="removePlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button> </div> </div> </div> </li>');
+
+
+        //Ad marker to map
+        var coord = place[1].split(',');
+        var placeMarker = L.marker([coord[0], coord[1]]).addTo(map)
+            .bindPopup(place[0] + '')
+            .openPopup();
+        markers.push(placeMarker);
+    }
+}
+
 
 function moveDownPlaceToDay(parameter, inputNumber, position) {
     var indexMoveElem = $(".element-" + inputNumber + "-" + position + "").index();
@@ -164,11 +186,11 @@ function checksubmit() {
         var daysObj = document.getElementById("daysitinerary");
         daysObj.value = itineraryDays;
     }
+    localStorage.clear();
 }
 
 function setAction(action) {
     // Imposta l'attributo action del form
     document.getElementById('myForm').action = action;
 }
-
 

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Travel.me - MyArea</title>
 </head>
 
-<body onload="createMap()">
+<body onload="uploadItinerary()">
     <?php include_once "assets/navbar.php" ?>
 
     <!-- Content section-->
@@ -84,6 +84,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
 
     <?php include_once "assets/footer.html" ?>
+
+    <script>
+        function uploadItinerary() {
+            var travel_id = localStorage.getItem("travel_id");
+            var travel = "";
+            createMap();
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    travel = JSON.parse(this.responseText);
+                    travel = JSON.parse(travel["travel"]);
+                    for(var i=0; i<travel.length;i++)
+                    {
+                        addItineraryDays(1);
+                        console.log(travel[i]);
+                        for(var j=0; j<travel[i].length;j++)
+                        {   
+                            addPlaceToDay(travel[i][j],i+1);
+                            console.log(travel[i][j]);
+                        }
+                    }
+
+                    /*for (day in travel) {
+                        addItineraryDays(1);
+                        //day = JSON.parse (day);
+                        console.log(day);
+                        for(place in day)
+                        {
+                            
+                            $(".add-day").append(place);
+                        }
+                        
+                    }*/
+
+
+                }
+            };
+            xhttp.open("GET", "itinerarydownload.php?travel_id=" + travel_id, true);
+            xhttp.send();
+        }
+    </script>
+
+
+
 </body>
 
 </html>
