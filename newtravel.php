@@ -97,38 +97,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     travel = JSON.parse(this.responseText);
                     travel = JSON.parse(travel["travel"]);
-                    for(var i=0; i<travel.length;i++)
-                    {
+                    for (var i = 0; i < travel.length; i++) {
                         addItineraryDays(1);
                         console.log(travel[i]);
-                        for(var j=0; j<travel[i].length;j++)
-                        {   
-                            addPlaceToDay(travel[i][j],i+1);
+                        for (var j = 0; j < travel[i].length; j++) {
+                            addPlaceToDay(travel[i][j], i + 1);
                             console.log(travel[i][j]);
                         }
                     }
-
-                    /*for (day in travel) {
-                        addItineraryDays(1);
-                        //day = JSON.parse (day);
-                        console.log(day);
-                        for(place in day)
-                        {
-                            
-                            $(".add-day").append(place);
-                        }
-                        
-                    }*/
-
-
                 }
             };
             xhttp.open("GET", "itinerarydownload.php?travel_id=" + travel_id, true);
             xhttp.send();
         }
     </script>
-
-
 
 </body>
 
