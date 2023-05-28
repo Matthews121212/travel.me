@@ -186,11 +186,5 @@ function checksubmit() {
         var daysObj = document.getElementById("daysitinerary");
         daysObj.value = itineraryDays;
     }
-    localStorage.clear();
-}
-
-function setAction(action) {
-    // Imposta l'attributo action del form
-    document.getElementById('myForm').action = action;
 }
 

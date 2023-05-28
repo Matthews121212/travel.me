@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row text-center rounded bg-light">
                     <h1 class="py-2 bg-dark rounded text-white">Your Itinerary</h1>
                     <div class="row gy-2">
-                        <form class="row" action="newtravel.php" method="POST" onsubmit="return checksubmit()">
+                        <form class="row" action="newtravel.php" id="itineraryForm" method="POST" onsubmit="return checksubmit()">
                             <div class="col">
                                 <label>
                                     <h5>Add or remove Days</h5>
@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" name="daysitinerary" id="daysitinerary" />
                                 <button type="submit" class="btn-secondary btn mx-1">Submit</button>
                             </div>
+                            
                         </form>
                     </div>
                     <div class="add-day">
@@ -111,6 +112,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             xhttp.send();
         }
     </script>
+
+<script>
+    
+    window.addEventListener('beforeunload', function(event) { //Se provo ad uscire dalla pagina
+        if (!formSubmitted) {
+            event.returnValue = 'Sei sicuro di voler lasciare la pagina? Tutti i dati non salvati andranno persi.';
+        }
+    });
+
+    var form = document.getElementById('itineraryForm');
+    var formSubmitted = false;
+
+    form.addEventListener('submit', function() {
+        formSubmitted = true;
+    });
+
+    window.addEventListener('unload', function() { // se esco dalla pagina pulisco local storage
+        localStorage.clear();
+    });
+
+</script>
+
+
 
 </body>
 

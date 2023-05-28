@@ -19,42 +19,21 @@
         $result = $stmt->get_result();
         echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $email_travel . ' travel results: </h2>';
         if ($result->num_rows > 0) {
-            $resultquery = 1;
-
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
-
-                
-                $variabile = 1;
                 echo '<hr class="hr" />';
-                echo '<div class="row mx-5 d-flex justify-content-center py-3 ">';
-                echo '<h3 class="text-center"></h3>';
-                echo '<table class="table table-striped table-responsive. align-middle">';
-                echo '<thead> <tr>';
+                $variabile = 1;
+                echo '<div class="container py-3"><div class="row">';
                 foreach ($travel as $daytravel) {
-                    echo '<th>Day ' . $variabile . '</th>';
+                    echo '<div class="col">';
+                    echo '<label class="ft-2 fw-bolder py-3">Day '. $variabile . '</label><ul class="list-group">';
+                    foreach ($daytravel as $placetravel) {
+                        echo '<li class="list-group-item">' . explode("&", $placetravel)[0] . '</li>';
+                    }
+                    echo '</ul></div>';
                     $variabile += 1;
                 }
-                
-                echo '</tr></thead><tbody>';
-                
-                $numColumns = count($travel);
-                
-                for ($i = 0; $i < $numColumns; $i++) {
-                    echo '<tr>';
-                    foreach ($travel as $daytravel) {
-                        if ($daytravel[$i] ?? null) {
-                            $placetravel = $daytravel[$i];
-                            echo '<td>' . explode("&", $placetravel)[0] . '</td>';
-                        } else {
-                            echo '<td></td>'; 
-                        }
-                    }
-                    echo '</tr>';
-                }
-                
-                echo '</tbody></table></div>';
-
+                echo '</div></div>';
                 
             }
         } else {

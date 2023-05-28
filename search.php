@@ -25,50 +25,35 @@
         if ($result->num_rows > 0) { //DB ITINERARY
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
-
+                echo '<hr class="hr" />';
                 echo '<h3 class="text-center">Travel by ' . $record['user_id'];
                 if ($authenticated)
                     echo '<button onclick="loadItinerary(' . $record['travel_id'] . ')" class="btn-secondary btn mx-1" type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
                 else
                     echo '<button onclick="alertlogin()" class="btn-secondary btn mx-1" type="button" > Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
-                echo '</tbody></table></div>';
-
+                
                 $variabile = 1;
                 echo '<hr class="hr" />';
-                echo '<div class="row mx-5 d-flex justify-content-center py-3 ">';
-                echo '<h3 class="text-center"></h3>';
-                echo '<table class="table table-striped table-responsive. align-middle">';
-                echo '<thead> <tr>';
+                echo '<div class="container py-3"><div class="row">';
                 foreach ($travel as $daytravel) {
-                    echo '<th>Day ' . $variabile . '</th>';
+                    echo '<div class="col">';
+                    echo '<label class="ft-2 fw-bolder py-3">Day '. $variabile . '</label><ul class="list-group">';
+                    foreach ($daytravel as $placetravel) {
+                        echo '<li class="list-group-item">' . explode("&", $placetravel)[0] . '</li>';
+                    }
+                    echo '</ul></div>';
                     $variabile += 1;
                 }
+                echo '</div></div>';
+                
 
-                echo '</tr></thead><tbody>';
-
-                $numColumns = count($travel);
-                echo json_encode($travel);
-                for ($i = 0; $i < $numColumns; $i++) {
-                    echo '<tr>';
-                    foreach ($travel as $daytravel) {
-                        if ($daytravel[$i] ?? null) {
-                            echo $i;
-                            $placetravel = $daytravel[$i];
-                            echo '<td>' . explode("&", $placetravel)[0] . '</td>';
-                        } else {
-                            echo '<td></td>';
-                        }
-                    }
-                    echo '</tr>';
-                }
-
-                echo '</tbody></table></div>';
             }
         } else {
             echo '<h3 class="text-center">No results found.</h3>';
         }
         $dbconn->close();
         //AI GENERATE ITINERARY
+        echo '<hr class="hr" />';
         echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' AI results: </h2>';
         echo '<hr class="hr" />';
         $curl = curl_init();
@@ -97,16 +82,17 @@
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo '<div class="container py-3">';
-            echo '<ul class="list-group">';
+
+            echo '<div class="container py-3"><div class="row">';
             foreach ($resultai->plan as $days) {
-                echo '<div class="row py-3 add-day-' . $days->day . '"><label class="ft-2 fw-bolder py-3">Day ' . $days->day . '</label><div class="container"><ul class="list-group item-day-' . $days->day . '"></ul></div></div>';
+                echo '<div class="col">';
+                echo '<label class="ft-2 fw-bolder py-3">Day ' . $days->day . '</label><ul class="list-group">';
                 foreach ($days->activities as $activity) {
                     echo '<li class="list-group-item">' . $activity->description . '</li>';
                 }
+                echo '</ul></div>';
             }
-            echo '</ul>';
-            echo '</div>';
+            echo '</div></div>';
         }
     }
     ?>

@@ -17,7 +17,6 @@
         
         <header class="py-5 bg-image-full header">
             <div class="text-center my-5">
-                <!--<img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />-->
                 <h1 class="text-white ft-1 fw-bolder">My Area</h1>
                 <img class="img-fluid img-user-logo rounded-circle mb-4 " src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg">
                 <p class="text-white mb-2">
@@ -41,7 +40,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="panel panel-dark panel-colorful">
-                                    <a class="link" href="newtravel.php">
+                                    <a class="link-dark" href="newtravel.php">
                                         <div class="panel-body text-center">
                                             <p class="text-uppercase mar-btm text-sm">New Travel</p>
                                             <i class="bi bi-airplane-fill display-1"></i>
@@ -51,7 +50,7 @@
                             </div>
                             <div class="col">
                                 <div class="panel panel-danger panel-colorful">
-                                    <a class="link" href="mytravel.php">
+                                    <a class="link-dark" href="mytravel.php">
                                         <div class="panel-body text-center">
                                             <p class="text-uppercase mar-btm text-sm">My Travel</p>
                                             <i class="bi bi-journal-bookmark-fill display-1"></i>
@@ -61,7 +60,7 @@
                             </div>
                             <div class="col">
                                 <div class="panel panel-info panel-colorful">
-                                    <a class="link" href="userinfo.php">
+                                    <a class="link-dark" href="userinfo.php">
                                         <div class="panel-body text-center">
                                             <p class="text-uppercase mar-btm text-sm">User info</p>
                                             <i class="bi bi-person-vcard-fill display-1"></i>

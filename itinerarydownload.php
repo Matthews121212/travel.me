@@ -1,5 +1,6 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "GET" && $authenticated) {
+    session_start();
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $dbconn = new mysqli("localhost", "root", "", "travel.me", 3306) or die("Could not connect: " . mysqli_connect_error());
         $stmt = $dbconn->prepare("SELECT travel FROM itinerary WHERE travel_id = ?");
         $stmt->bind_param("s", $_GET["travel_id"]);
