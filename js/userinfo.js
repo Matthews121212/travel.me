@@ -1,49 +1,124 @@
-function modifyUserInfo() {
-    values = new Array();
-    for (let elem of document.getElementsByClassName("user-info")) {
-        values[elem.id] = elem.value;
-        elem.removeAttribute("readonly");
-        elem.classList.remove("form-control-plaintext");
-        elem.classList.add("form-control");
-    }
-    switch (document.getElementById("genderReadOnly").value) {
-        case "female":
-            document.getElementById("femaleGender").checked = true;
-            break;
-        case "male":
-            document.getElementById("maleGender").checked = true;
-            break;
-        case "other":
-            document.getElementById("otherGender").checked = true;
-            break;
-    }
-    for (let elem of document.getElementsByClassName("gender")) {
-        elem.hidden = false;
-    }
-    document.getElementById("genderDiv").classList.remove("row");
-    document.getElementById("genderReadOnly").hidden = true;
-    document.getElementById("modify-button").hidden = true;
-    document.getElementById("cancel-button").hidden = false;
-    document.getElementById("save-button").hidden = false;
-}
+const form = document.getElementById("user-info-form");
+const inputs = document.querySelectorAll(".needs-validation");
+let fieldValues = new Array();
+let genderValues = new Array();
+let modifying = false;
+let passwordMode = false;
 
-function cancelModify() {
-    for (let elem of document.getElementsByClassName("user-info")) {
-        elem.value = values[elem.id];
-        elem.readOnly = true;
-        elem.classList.add("form-control-plaintext");
-        elem.classList.remove("form-control");
+function modifyUserInfo(cancel, password) {
+    modifying = !cancel;
+    passwordMode = password;
+    let fieldIds = ["name", "surname", "email", "birthday", "phoneNumber"];
+    for (let id of fieldIds) {
+        elem = document.getElementById(id);
+        cancel ? elem.value = fieldValues[id] : fieldValues[id] = elem.value;
+        elem.parentElement.hidden = password && !cancel;
+        elem.readOnly = cancel;
     }
-    for (let elem of document.getElementsByClassName("gender")) {
-        elem.hidden = true;
+    document.getElementById("gender").hidden = password && !cancel;
+    let genderIds = ["femaleGender", "maleGender", "otherGender"];
+    for (let id of genderIds) {
+        elem = document.getElementById(id);
+        cancel ? elem.checked = genderValues[id] : genderValues[id] = elem.checked;
+        elem.disabled = cancel;
     }
-    document.getElementById("genderDiv").classList.add("row");
-    document.getElementById("genderReadOnly").hidden = false;
-    document.getElementById("modify-button").hidden = false;
-    document.getElementById("cancel-button").hidden = true;
-    document.getElementById("save-button").hidden = true;
+    document.getElementById("password-change-message").hidden = true;
+    document.getElementById("oldPassword").parentElement.hidden = !password || cancel;
+    document.getElementById("newPassword").parentElement.hidden = !password || cancel;
+    document.getElementById("confirmPassword").parentElement.hidden = !password || cancel;
+    document.getElementById("modify-button").hidden = !cancel;
+    document.getElementById("change-password-button").hidden = !cancel;
+    document.getElementById("cancel-button").hidden = password || cancel;
+    document.getElementById("cancel-password-change-button").hidden = !password || cancel;
+    document.getElementById("save-button").hidden = cancel;
+    Array.from(inputs).forEach(input => input.classList.remove("is-valid", "is-invalid"));
 }
 
 function saveModify() {
-    document.getElementById("modify-form").submit();
+    validateForm(function (valid) {
+        if (valid)
+            form.submit();
+    });
 }
+
+function checkValidity(input, callback) {
+    const isPasswordField = input.id === "oldPassword" || input.id === "newPassword" || input.id === "confirmPassword";
+    let regex = /^./;
+    if (passwordMode) {
+        if (!isPasswordField)
+            return callback(true);
+        if (input.value === "")
+            return callback(false);
+        if (input.id === "confirmPassword" && input.value !== document.getElementById("newPassword").value)
+            return callback(false);
+        if (input.id === "oldPassword") {
+            $.ajax({
+                url: "userinfo_ajax.php",
+                method: "POST",
+                data: {
+                    password: input.value
+                },
+                success: function(response) {
+                    callback(response);
+                },
+            });
+            return;
+        }
+    }
+    else {
+        if (isPasswordField)
+            return callback(true);
+        if (input.value === "")
+            return callback(false);
+        if (input.id === "name" || input.id === "surname")
+            regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+        else if (input.id === "phoneNumber")
+            regex = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+    }
+    callback(regex.test(input.value) && input.checkValidity());
+}
+
+function validateForm(callback) {
+    let valid = true;
+
+    const promises = [];
+    Array.from(inputs).forEach(input => {
+        const promise = new Promise(function(resolve) {
+            checkValidity(input, function(result) {
+                if(result) {
+                    input.classList.remove("is-invalid");
+                    input.classList.add("is-valid");
+                }
+                else {
+                    valid = false;
+                    input.classList.remove("is-valid");
+                    input.classList.add("is-invalid");
+                }
+                resolve();
+            });
+        });
+
+        promises.push(promise);
+    });
+    
+    Promise.all(promises).then(function() {
+        callback(valid);
+    });
+}
+
+Array.from(inputs).forEach(input => {
+  input.addEventListener('blur', () => {
+    if (!modifying)
+        return;
+    checkValidity(input, function(result) {
+        if(result) {
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+        }
+        else {
+            input.classList.remove("is-valid");
+            input.classList.add("is-invalid");
+        }
+    });
+  }, false)
+});

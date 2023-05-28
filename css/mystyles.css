@@ -82,3 +82,12 @@
   font-size: 45px;  
   background-color: grey;  
 }  
+
+.container-about{
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-position-y: 60%;
+  position: relative;
+  min-height: 50rem;
+}
