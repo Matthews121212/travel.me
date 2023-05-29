@@ -21,41 +21,40 @@
         $stmt->bind_param("ss", $place, $quantity);
         $stmt->execute();
         $result = $stmt->get_result();
-        echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' Database results: </h2>';
+        echo '<h2 class="display-4 text-center text-primary fw-bold py-3">' . $placename . ' Database results: </h2>';
         if ($result->num_rows > 0) { //DB ITINERARY
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
-                echo '<hr class="hr" />';
+                echo '<div class="container me-5 ">';
+                echo '<div class="row py-2 bg-dark rounded text-white ">';
                 echo '<h3 class="text-center">Travel by ' . $record['user_id'];
                 if ($authenticated)
-                    echo '<button onclick="loadItinerary(' . $record['travel_id'] . ')" class="btn-secondary btn mx-1" type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
+                    echo '<button onclick="loadItinerary(' . $record['travel_id'] . ')" class="btn-secondary btn mx-1 " type="button"> Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
                 else
                     echo '<button onclick="alertlogin()" class="btn-secondary btn mx-1" type="button" > Load and edit <i class="bi bi-pencil-square"></i></button></h3>';
-                
+
                 $variabile = 1;
-                echo '<hr class="hr" />';
-                echo '<div class="container py-3"><div class="row">';
+
+                echo '</div><div class="row d-flex rounded bg-dark bg-opacity-10 pb-4">';
                 foreach ($travel as $daytravel) {
                     echo '<div class="col">';
-                    echo '<label class="ft-2 fw-bolder py-3">Day '. $variabile . '</label><ul class="list-group">';
+                    echo '<label class="ft-2 fw-bolder py-3">Day ' . $variabile . '</label><ul class="list-group">';
                     foreach ($daytravel as $placetravel) {
                         echo '<li class="list-group-item">' . explode("&", $placetravel)[0] . '</li>';
                     }
                     echo '</ul></div>';
                     $variabile += 1;
                 }
-                echo '</div></div>';
-                
-
+                echo '</div></div></div>';
+                echo '<hr class="hr" />';
             }
         } else {
             echo '<h3 class="text-center">No results found.</h3>';
         }
         $dbconn->close();
         //AI GENERATE ITINERARY
-        echo '<hr class="hr" />';
-        echo '<h2 class="text-center text-primary fw-bold fs-1 py-3">' . $placename . ' AI results: </h2>';
-        echo '<hr class="hr" />';
+        echo '<h2 class="display-4 text-center text-primary fw-bold py-3">' . $placename . ' AI results: </h2>';
+
         $curl = curl_init();
         /*curl_setopt_array($curl, [
                             CURLOPT_URL => 'https://ai-trip-planner.p.rapidapi.com/?days=' . $quantity . '&destination=' . $placename . '',
@@ -82,8 +81,12 @@
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-
-            echo '<div class="container py-3"><div class="row">';
+            echo '<div class="container me-5 mb-4">';
+            echo '<div class="row py-2 bg-dark rounded text-white">';
+            echo '<h3 class="text-center">Travel by IA Trip Planner';
+            echo '</div>';
+            echo '<div class="row">';
+            echo '</div><div class="row d-flex rounded bg-dark bg-opacity-10 pb-4">';
             foreach ($resultai->plan as $days) {
                 echo '<div class="col">';
                 echo '<label class="ft-2 fw-bolder py-3">Day ' . $days->day . '</label><ul class="list-group">';
@@ -92,7 +95,7 @@
                 }
                 echo '</ul></div>';
             }
-            echo '</div></div>';
+            echo '</div></div></div>';
         }
     }
     ?>
