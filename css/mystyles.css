@@ -20,10 +20,8 @@
 }
 
 .container-itinerario{
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
     background-repeat: no-repeat; 
     background-size: cover;
-    background-position-y: 20%;
     position: relative;
     min-height: 15rem;
 }

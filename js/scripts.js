@@ -46,7 +46,7 @@ function addItineraryDays(days) {
     if (days == 1) {
         var day = [];
         itineraryDays++;
-        $(".add-day").append('<div class="row py-3 add-day-' + itineraryDays + '"><label class="ft-2 fw-bolder py-3">Day ' + itineraryDays + '</label><div class="container"><ul class="list-group item-day-' + itineraryDays + '"></ul></div></div>');
+        $(".add-day").append(' <div class="container-fluid bg-opacity-25 pb-1 add-day-' + itineraryDays + '"> <div class="row text-bg-primary text-white rounded pb-2"> <div class="bg-gradient fw-bold ft-2 bg-dark rounded text-white"> <label class="fw-bolder py-3">Day ' + itineraryDays + '</label> </div> <ul class="list-group item-day-' + itineraryDays + '"> </ul> </div> </div> <hr class="hr" />');
         itinerary.push(day);
     }
     else if (days == -1 && itineraryDays > 0) {
@@ -72,7 +72,7 @@ function addPlaceToDay(parameter) {
     else {
         itinerary[inputNumber - 1].push(parameter);
         var position = itinerary[inputNumber - 1].length;
-        $(".item-day-" + inputNumber + "").append('<li class="list-group-item list-group-numbered element-' + inputNumber + '-' + position + '"> <div class="row "> <div class="col-8 align-middle"> ' + place[0] + ' </div> <div class="col-4 align-middle"> <div class="btn-toolbar btn-group"><button type="button" id="remove-button" onclick="removePlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button> </div> </div> </div> </li>');
+        $(".item-day-" + inputNumber + "").append('<li class="list-group-item element-' + inputNumber + '-' + position + '"> <div class="row "> <div class="col"> ' + place[0] + ' </div> <div class="col"> <div class="btn-toolbar btn-group"> <button type="button" id="remove-button" onclick="removePlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-x-circle"></i></button> <button type="button" id="move-down-button" onclick="moveUpPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-up"></i></button> <button type="button" id="move-up-button" onclick="moveDownPlaceToDay(\'' + parameter + '\',\'' + inputNumber + '\',\'' + position + '\')" class="btn-secondary btn"><i class="bi bi-arrow-bar-down"></i></button> </div> </div> </div></li>');
 
 
         //Ad marker to map
