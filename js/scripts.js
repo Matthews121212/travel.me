@@ -46,7 +46,7 @@ function addItineraryDays(days) {
     if (days == 1) {
         var day = [];
         itineraryDays++;
-        $(".add-day").append(' <div class="container-fluid bg-opacity-25 pb-1 add-day-' + itineraryDays + '"> <div class="row text-bg-primary text-white rounded pb-2"> <div class="bg-gradient fw-bold ft-2 bg-dark rounded text-white"> <label class="fw-bolder py-3">Day ' + itineraryDays + '</label> </div> <ul class="list-group item-day-' + itineraryDays + '"> </ul> </div> </div> <hr class="hr" />');
+        $(".add-day").append(' <div class="container-fluid bg-opacity-25 pb-1 add-day-' + itineraryDays + '"> <div class="row text-bg-primary text-white rounded pb-2"> <div class="bg-gradient fw-bold ft-2 bg-dark rounded text-white"> <label class="fw-bolder py-3">Day ' + itineraryDays + '</label> </div> <ul class="list-group item-day-' + itineraryDays + '"> </ul> </div> </div>');
         itinerary.push(day);
     }
     else if (days == -1 && itineraryDays > 0) {

@@ -23,7 +23,7 @@
                 $travel = json_decode($record['travel']);
                 echo '<hr class="hr" />';
                 $variabile = 1;
-                echo '<div class="container py-3"><div class="row">';
+                echo '<div class="container py-3"><div class="row d-flex rounded bg-dark bg-opacity-10 pb-4">';
                 foreach ($travel as $daytravel) {
                     echo '<div class="col">';
                     echo '<label class="ft-2 fw-bolder py-3">Day '. $variabile . '</label><ul class="list-group">';

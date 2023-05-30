@@ -25,7 +25,7 @@
         if ($result->num_rows > 0) { //DB ITINERARY
             foreach ($result as $record) {
                 $travel = json_decode($record['travel']);
-                echo '<div class="container me-5 ">';
+                echo '<div class="container  ">';
                 echo '<div class="row py-2 bg-dark rounded text-white ">';
                 echo '<h3 class="text-center">Travel by ' . $record['user_id'];
                 if ($authenticated)
@@ -81,7 +81,7 @@
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo '<div class="container me-5 mb-4">';
+            echo '<div class="container mb-4">';
             echo '<div class="row py-2 bg-dark rounded text-white">';
             echo '<h3 class="text-center">Travel by IA Trip Planner';
             echo '</div>';

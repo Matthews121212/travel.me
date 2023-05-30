@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <form class="row" action="newtravel.php" id="itineraryForm" method="POST" onsubmit="return checksubmit()">
                                 <div class="col">
                                     <label>
-                                        <h5>Add or remove Days</h5>
+                                        <h5>Click to add or remove days</h5>
                                     </label>
                                     <button onclick="addItineraryDays(-1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> do_not_disturb_on </span> </button>
                                     <button onclick="addItineraryDays(1)" class="btn-secondary btn-block btn mx-1" type="button"> <span class="material-symbols-outlined"> add_circle </span> </button>
