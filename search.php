@@ -56,8 +56,8 @@
         echo '<h2 class="display-4 text-center text-primary fw-bold py-3">' . $placename . ' AI results: </h2>';
 
         $curl = curl_init();
-        /*curl_setopt_array($curl, [
-                            CURLOPT_URL => 'https://ai-trip-planner.p.rapidapi.com/?days=' . $quantity . '&destination=' . $placename . '',
+        curl_setopt_array($curl, [
+                            CURLOPT_URL => 'https://ai-trip-planner.p.rapidapi.com/?days=' . $quantity . '&destination=' . urlencode($placename) . '',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => "",
                             CURLOPT_MAXREDIRS => 10,
@@ -70,13 +70,9 @@
                             ],
                         ]);
 
-                        $response = curl_exec($curl);
-                        $err = curl_error($curl);
-                        curl_close($curl);
-                        */
-
-        $err = "";
-        $response = '{"_id": "64690c22a2ede0dd399c8cc8","plan": [{"day": 1,"activities": [{"time": "9:00 AM","description": "Arrive in Rome and check-in to hotel"},{"time": "11:00 AM","description": "Visit the Vatican Museums"},{"time": "2:00 PM","description": "Explore St Peters Basilica"},{"time": "4:00 PM","description": "Tour the Colosseum"},{"time": "7:00 PM","description": "Dine at a local restaurant"}]},{"day": 2,"activities": [{"time": "9:00 AM","description": "Visit the Roman Forum"},{"time": "12:00 PM","description": "Explore the Pantheon"},{"time": "3:00 PM","description": "Walk around Piazza Navona"},{"time": "6:00 PM","description": "Visit the Trevi Fountain"},{"time": "9:00 PM","description": "Experience Romes nightlife"}]},{"day": 3,"activities": [{"time": "10:00 AM","description": "Take a day trip to Pompeii"},{"time": "3:00 PM","description": "Return to Rome and explore Trastevere neighborhood"},{"time": "6:00 PM","description": "Visit the Spanish Steps"},{"time": "8:00 PM","description": "Enjoy a final dinner in Rome"}]}],"key": "3-rome"}';
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
         $resultai = json_decode($response);
         if ($err) {
             echo "cURL Error #:" . $err;
