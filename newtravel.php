@@ -100,10 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     travel = JSON.parse(travel["travel"]);
                     for (var i = 0; i < travel.length; i++) {
                         addItineraryDays(1);
-                        console.log(travel[i]);
                         for (var j = 0; j < travel[i].length; j++) {
                             loadPlaceToDay(travel[i][j], i + 1);
-                            console.log(travel[i][j]);
                         }
                     }
                 }
