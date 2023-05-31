@@ -10,9 +10,9 @@
         $surname = $_POST["surname"];
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $date = $_POST["date"];
+        $birthday = $_POST["birthday"];
         $gender = $_POST["gender"];
-        $number = $_POST["number"];
+        $phoneNumber = $_POST["phoneNumber"];
         
         $stmt = $dbconn->prepare("SELECT 1 FROM user WHERE email = ?");
         $stmt->bind_param("s", $email);
@@ -24,7 +24,7 @@
         if(!$alreadyRegistered) {
             $stmt = $dbconn->prepare("INSERT INTO user (name, surname, email, password, date, gender, number) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHash, $date, $gender, $number);
+            $stmt->bind_param("sssssss", $name, $surname, $email, $passwordHash, $birthday, $gender, $phoneNumber);
             $stmt->execute();
             $stmt->close();
             set_authenticated($email, false);
@@ -49,61 +49,72 @@
                 class="img-fluid" alt="travel image">
             </div>
             <div class="col">
-                <form action="register.php" method="POST" id="register-form" onsubmit="validateForm(event)">
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name" required><br>
-                        </div>
-                        <div class="col"> 
-                            <input type="text" name="surname" class="form-control form-control-lg" placeholder="Enter surname" required><br>
-                        </div>
+                <form action="register.php" method="POST" id="register-form" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control needs-validation" id="name" name="name">
+                        <label for="name">Name</label>
+                        <div class="invalid-feedback">Please provide a valid name</div>
                     </div>
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
-                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
-                    
-                    <h6 class="form-check form-check-inline form-control-lg">Gender: </h6>
-                    <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" id="femaleGender" name="gender" value="female" required>
-                        <label class="form-check-label" for="femaleGender">Female</label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control needs-validation" id="surname" name="surname">
+                        <label for="surname">Surname</label>
+                        <div class="invalid-feedback">Please provide a valid surname</div>
                     </div>
-                    <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" id="maleGender" name="gender" value="male" required>
-                        <label class="form-check-label" for="maleGender">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline form-control-lg">
-                        <input class="form-check-input" type="radio" id="otherGender" name="gender" value="other" required>
-                        <label class="form-check-label" for="otherGender">Other</label>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control needs-validation" id="email" name="email">
+                        <label for="email">Email</label>
+                        <div class="invalid-feedback">Please provide a valid email</div>
                     </div>
                     
-                    <div class="form-group">
-                        <h6 class="form-check form-check-inline form-control-lg active" for="date">Birthday date: </h6>
-                        <input type="date" id="date" name="date">
+                    <div class="form-floating mb-3 w-50">
+                        <select class="form-select needs-validation" id="gender" name="gender">
+                            <option selected></option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="gender">Gender</label>
+                        <div class="invalid-feedback">Please select a gender.</div>
                     </div>
 
-                    <input type="tel" name="number" class="form-control form-control-lg" placeholder="Enter phone number" required><br>
-
-                    <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                    <input class="form-check-input me-3" type="checkbox" id="termsAndConditions">
-                    <label class="form-check-label text-secondary" for="termsAndConditions">
-                    I do accept the <a href="#!" class="text-primary"><u>Terms and Conditions</u></a> of your
-                    site.
-                    </label>
+                    <div class="form-floating mb-3 w-50">
+                        <input type="date" class="form-control needs-validation" id="birthday" name="birthday">
+                        <label for="birthday">Birthday date</label>
+                        <div class="invalid-feedback">Please provide a valid birthday day</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control needs-validation" id="phoneNumber" name="phoneNumber">
+                        <label for="phoneNumber">Phone number</label>
+                        <div class="invalid-feedback">Please provide a valid phone number</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control needs-validation" id="password" name="password">
+                        <label for="password">Password</label>
+                        <div class="invalid-feedback">The password must be at least 8 characters long</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control needs-validation" id="confirmPassword" name="confirmPassword">
+                        <label for="confirmPassword">Confirm new password</label>
+                        <div class="invalid-feedback">The password doesn't match</div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-auto">
-                        <button type="submit" class="btn btn-lg btn-primary">Register</button><br>
-                        </div>
-                        <div class="col-auto py-2">
-                        <label class="text-primary">Already a member? </label> <a href="login.php">Sign here.</a>
-                        </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input needs-validation" id="termsAndConditions" required>
+                        <label class="form-check-label" for="termsAndConditions">
+                        I do accept the <a href="#!" class="text-primary"><u>Terms and Conditions</u></a> of your
+                        site.
+                        </label>
+                        <div class="invalid-feedback">You must agree before submitting.</div>
                     </div>
                 </form>
-                <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST" && $alreadyRegistered) {
-                        echo "The email is already registered";
-                    }
-                ?>
+                <div class="row mb-3">
+                    <div class="col-auto">
+                        <button id="submit-button" class="btn btn-lg btn-primary" onclick="submitForm()">Register</button>
+                    </div>
+                    <div class="col-auto py-2">
+                        <label class="text-primary">Already a member? </label> <a href="login.php">Sign here.</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

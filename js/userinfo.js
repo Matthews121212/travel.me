@@ -19,9 +19,9 @@ function modifyUserInfo(cancel, password) {
     let genderIds = ["femaleGender", "maleGender", "otherGender"];
     for (let id of genderIds) {
         elem = document.getElementById(id);
-        cancel ? elem.checked = genderValues[id] : genderValues[id] = elem.checked;
-        elem.disabled = cancel;
+        cancel ? elem.selected = genderValues[id] : genderValues[id] = elem.selected;
     }
+    document.getElementById("gender").disabled = cancel;
     document.getElementById("password-change-message").hidden = true;
     document.getElementById("oldPassword").parentElement.hidden = !password || cancel;
     document.getElementById("newPassword").parentElement.hidden = !password || cancel;
@@ -51,6 +51,8 @@ function checkValidity(input, callback) {
             return callback(false);
         if (input.id === "confirmPassword" && input.value !== document.getElementById("newPassword").value)
             return callback(false);
+        if (input.id === "newPassword")
+            return callback(input.value.length >= 8);
         if (input.id === "oldPassword") {
             $.ajax({
                 url: "userinfo_ajax.php",

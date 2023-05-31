@@ -90,21 +90,15 @@
                         <div class="invalid-tooltip">Please provide a valid email</div>
                     </div>
                     
-                    <div class="form-group mb-3" id="gender">
-                        <label class="col-sm-2 col-form-label my-auto fw-bold">Gender</label>
-                        <div class="form-check form-check-inline form-control-lg">
-                            <input class="form-check-input" type="radio" id="femaleGender" name="gender" value="female" disabled <?php echo $gender === "female" ? "checked" : "" ?>>
-                            <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
-                        <div class="form-check form-check-inline form-control-lg">
-                            <input class="form-check-input" type="radio" id="maleGender" name="gender" value="male" disabled <?php echo $gender === "male" ? "checked" : "" ?>>
-                            <label class="form-check-label" for="maleGender">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline form-control-lg">
-                            <input class="form-check-input" type="radio" id="otherGender" name="gender" value="other" disabled <?php echo $gender === "other" ? "checked" : "" ?>>
-                            <label class="form-check-label" for="otherGender">Other</label>
-                        </div>
+                    <div class="form-floating mb-3 w-50">
+                        <select class="form-select needs-validation" id="gender" name="gender" disabled>
+                            <option id="femaleGender" value="female" <?php echo $gender === "female" ? "selected" : "" ?>>Female</option>
+                            <option id="maleGender" value="male" <?php echo $gender === "male" ? "selected" : "" ?>>Male</option>
+                            <option id="otherGender" value="other" <?php echo $gender === "other" ? "selected" : "" ?>>Other</option>
+                        </select>
+                        <label for="gender">Gender</label>
                     </div>
+
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control needs-validation" readonly id="birthday" name="birthday" value="<?php echo $birthday ?>">
                         <label for="birthday">Birthday date</label>
@@ -123,7 +117,7 @@
                     <div class="form-floating mb-3" hidden>
                         <input type="password" class="form-control needs-validation" id="newPassword" name="newPassword">
                         <label for="newPassword">New password</label>
-                        <div class="invalid-tooltip">Please provide a password</div>
+                        <div class="invalid-tooltip">The password must be at least 8 characters long</div>
                     </div>
                     <div class="form-floating mb-3" hidden>
                         <input type="password" class="form-control needs-validation" id="confirmPassword" name="confirmPassword">
