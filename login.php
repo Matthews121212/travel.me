@@ -43,8 +43,14 @@
             <div class="col">
                 
                 <form action="login.php" method="POST">
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required><br>
-                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" required><br>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control needs-validation" id="email" name="email">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control needs-validation" id="password" name="password">
+                        <label for="password">Password</label>
+                    </div>
                     <input type="checkbox" name="keepMeLoggedIn" class="form-check-input" id="keepMeLoggedIn">
                     <label class="form-check-label" for="keepMeLoggedIn">Keep me logged in</label>
                     <div class="row mt-3">
