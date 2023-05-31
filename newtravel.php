@@ -97,13 +97,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (this.readyState == 4 && this.status == 200) {
 
                     travel = JSON.parse(this.responseText);
-                    travel = JSON.parse(travel["travel"]);
-                    for (var i = 0; i < travel.length; i++) {
-                        addItineraryDays(1);
-                        for (var j = 0; j < travel[i].length; j++) {
-                            loadPlaceToDay(travel[i][j], i + 1);
+                    if(travel != null){
+                        travel = JSON.parse(travel["travel"]);
+                        for (var i = 0; i < travel.length; i++) {
+                            addItineraryDays(1);
+                            for (var j = 0; j < travel[i].length; j++) {
+                                loadPlaceToDay(travel[i][j], i + 1);
+                            }
                         }
                     }
+                    
                 }
             };
             xhttp.open("GET", "itinerarydownload.php?travel_id=" + travel_id, true);
