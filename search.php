@@ -66,7 +66,7 @@
                             CURLOPT_CUSTOMREQUEST => "GET",
                             CURLOPT_HTTPHEADER => [
                                 "X-RapidAPI-Host: ai-trip-planner.p.rapidapi.com",
-                                "X-RapidAPI-Key: e37c15540cmsha3c72df1d15c5e7p12357ejsn27500c2593d7"
+                                "X-RapidAPI-Key: "
                             ],
                         ]);
 
